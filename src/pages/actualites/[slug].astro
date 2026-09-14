@@ -32,16 +32,28 @@ const isEn = entry.lang === 'en';
 const publishedDate = new Date(entry.date).toLocaleDateString(isEn ? 'en-GB' : 'fr-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const canonical = `https://agifid.be/actualites/${Astro.params.slug}.html`;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: entry.title,
-  description: entry.excerpt,
-  datePublished: entry.date,
-  author: { '@type': 'Organization', name: entry.author },
-  publisher: { '@type': 'Organization', name: 'AgiFid' },
-  mainEntityOfPage: canonical,
-};
+const listUrl = isEn ? 'https://agifid.be/actualites-en.html' : 'https://agifid.be/actualites.html';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: entry.title,
+    description: entry.excerpt,
+    datePublished: entry.date,
+    author: { '@type': 'Organization', name: entry.author },
+    publisher: { '@type': 'Organization', name: 'AgiFid' },
+    mainEntityOfPage: canonical,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AgiFid', item: 'https://agifid.be/' },
+      { '@type': 'ListItem', position: 2, name: isEn ? 'Insights' : 'Actualités', item: listUrl },
+      { '@type': 'ListItem', position: 3, name: entry.title, item: canonical },
+    ],
+  },
+];
 ---
 <Layout
   htmlLang={isEn ? 'en' : 'fr-BE'}

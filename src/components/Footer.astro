@@ -11,7 +11,7 @@ const strings = {
     newsletter: 'Abonnez-vous à notre newsletter', emailPlaceholder: 'Votre email',
     newsletterSubject: 'Newsletter signup - AgiFid',
     tagline: 'Fiduciaire 100% dédiée aux sociétés sur Odoo',
-    why: 'Pourquoi nous', services: 'Services', contact: 'Contact', blog: 'Actualités', agitech: 'Agitech',
+    why: 'Pourquoi nous', services: 'Services', contact: 'Contact', blog: 'Actualités', about: 'À propos', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'pourquoi',
     rights: '© 2026 AgiFid. Tous droits réservés.',
     privacy: 'Politique de Confidentialité', terms: 'Termes et Conditions',
@@ -20,7 +20,7 @@ const strings = {
     newsletter: 'Subscribe to our newsletter', emailPlaceholder: 'Your email',
     newsletterSubject: 'Newsletter signup (EN) - AgiFid',
     tagline: 'Accounting firm 100% dedicated to companies on Odoo',
-    why: 'Why us', services: 'Services', contact: 'Contact', blog: 'Insights', agitech: 'Agitech',
+    why: 'Why us', services: 'Services', contact: 'Contact', blog: 'Insights', about: 'About', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'why',
     rights: '© 2026 AgiFid. All rights reserved.',
     privacy: 'Privacy Policy', terms: 'Terms and Conditions',
@@ -64,6 +64,7 @@ const base = pageType === 'home' ? '' : '/index.html';
             <li><a href={`${base}#services`}>{strings.services}</a></li>
             <li><a href={`${base}#contact`}>{strings.contact}</a></li>
             <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>
+            {lang === 'fr' && <li><a href="/a-propos.html">{strings.about}</a></li>}
             <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
           </ul>
           <div class="social-icons">

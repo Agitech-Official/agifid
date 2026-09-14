@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const experts = (await reader.collections.experts.all())
+  .map((e) => e.entry)
+  .sort((a, b) => a.order - b.order);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'À propos d\'AgiFid',
+    url: 'https://agifid.be/a-propos.html',
+    about: { '@type': 'Organization', name: 'AgiFid' },
+  },
+  ...experts.map((e) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: e.displayName,
+    jobTitle: e.role,
+    worksFor: { '@type': 'Organization', name: 'AgiFid' },
+    ...(e.linkedin ? { sameAs: [e.linkedin] } : {}),
+    ...(e.photo ? { image: `https://agifid.be/assets/img/experts/${e.photo}` } : {}),
+  })),
+];
+---
+<Layout
+  htmlLang="fr-BE"
+  lang="fr"
+  pageType="sub"
+  title="À propos — AgiFid"
+  description="AgiFid, fiduciaire agréée membre de l'ITAA, 100% dédiée aux sociétés sur Odoo. Notre équipe, notre approche, notre collaboration avec Agitech."
+  canonical="https://agifid.be/a-propos.html"
+  ogLocale="fr_BE"
+  jsonLd={jsonLd}
+>
+<section class="about-section">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">À propos</h6>
+      <h1>Une fiduciaire pensée pour Odoo</h1>
+      <p>AgiFid est une fiduciaire agréée, membre de l'ITAA, 100% dédiée aux sociétés qui pilotent leur comptabilité, leur fiscalité et leur gestion sur Odoo.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>Notre approche</h2>
+      <p>La plupart des dossiers comptables se travaillent en aval : on encode, puis on commente une fois par an. Nous faisons l'inverse. Votre comptable travaille directement dans votre Odoo, la comptabilité reste à jour en continu, et vous disposez d'un tableau de bord avec vos KPI en temps réel. L'objectif : que la comptabilité serve à piloter l'entreprise, pas seulement à rester en règle.</p>
+      <p>Nous formons aussi nos clients à l'encodage dans Odoo. Bien encodé de votre côté, nous ne facturons pas l'encodage — vous gagnez en autonomie, nous nous concentrons sur le conseil.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>AgiFid &amp; Agitech</h2>
+      <p>AgiFid (comptable agréé) et Agitech (intégrateur Odoo certifié) sont deux entités juridiquement et opérationnellement indépendantes, qui collaborent étroitement. L'intégrateur gère Odoo, le comptable gère la compta — avec une coordination directe entre les deux équipes, et fini le renvoi de responsabilité classique entre prestataire IT et fiduciaire.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>Nos garanties</h2>
+      <ul class="about-list">
+        <li><strong>Membre de l'ITAA</strong> — expertise certifiée, formation continue obligatoire, déontologie stricte, cadre réglementé qui protège le client.</li>
+        <li><strong>Partenaire Odoo Silver</strong> — via notre collaboration avec Agitech.</li>
+        <li><strong>98 PME nous font déjà confiance</strong> — et une tarification fixe et transparente.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>L'équipe</h2>
+      <div class="about-team">
+        {experts.map((e) => (
+          <div class="about-member">
+            {e.photo && <img src={`/assets/img/experts/${e.photo}`} alt={e.displayName} width="700" height="700" loading="lazy" />}
+            <div class="about-member-info">
+              <h3>{e.displayName}</h3>
+              <span class="about-member-role">{e.role}</span>
+              {e.bio && <p>{e.bio}</p>}
+              {e.linkedin && <a href={e.linkedin} target="_blank" rel="noopener">LinkedIn →</a>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <a class="btn btn-violet" href="/index.html#contact">Parler à un expert</a>
+    </div>
+  </div>
+</section>
+</Layout>

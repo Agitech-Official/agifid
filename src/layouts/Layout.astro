@@ -13,6 +13,9 @@ export interface Props {
   ogLocale?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   robotsNoIndex?: boolean;
+  /** Absolute URL of this exact page in the other language. Enables a precise 2-way
+      hreflang pair. Omit on pages with no translated counterpart. */
+  altLangUrl?: string;
   /** Calendly widget + reCAPTCHA v3 + the postMessage listener - only needed on pages with the contact form. */
   includeContactScripts?: boolean;
 }
@@ -20,8 +23,10 @@ export interface Props {
 const {
   htmlLang, lang, pageType, title, description,
   canonical, ogLocale, jsonLd, robotsNoIndex = false,
-  includeContactScripts = false,
+  altLangUrl, includeContactScripts = false,
 } = Astro.props;
+
+const otherLang = lang === 'fr' ? 'en' : 'fr';
 ---
 <!DOCTYPE html>
 <html lang={htmlLang}>
@@ -49,9 +54,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {canonical && (
   <>
     <link rel="canonical" href={canonical}>
-    <link rel="alternate" hreflang="fr" href="https://agifid.be/">
-    <link rel="alternate" hreflang="en" href="https://agifid.be/index-en.html">
-    <link rel="alternate" hreflang="x-default" href="https://agifid.be/">
+    {altLangUrl ? (
+      <>
+        <link rel="alternate" hreflang={lang} href={canonical}>
+        <link rel="alternate" hreflang={otherLang} href={altLangUrl}>
+        <link rel="alternate" hreflang="x-default" href={lang === 'fr' ? canonical : altLangUrl}>
+      </>
+    ) : pageType === 'home' ? (
+      <>
+        <link rel="alternate" hreflang="fr" href="https://agifid.be/">
+        <link rel="alternate" hreflang="en" href="https://agifid.be/index-en.html">
+        <link rel="alternate" hreflang="x-default" href="https://agifid.be/">
+      </>
+    ) : (
+      <link rel="alternate" hreflang={lang} href={canonical}>
+    )}
     <meta property="og:type" content="website">
     <meta property="og:locale" content={ogLocale}>
     <meta property="og:url" content={canonical}>

@@ -254,6 +254,14 @@ export default config({
           label: 'Position (1 = premier affiché)',
           defaultValue: 1,
         }),
+        bio: fields.text({
+          label: 'Bio (page À propos)',
+          description: 'Quelques phrases : parcours, spécialité. Laissé vide = non affiché.',
+          multiline: true,
+        }),
+        linkedin: fields.url({
+          label: 'Profil LinkedIn (page À propos)',
+        }),
         photo: fields.image({
           label: 'Photo',
           description: 'Format portrait recommandé (comme les photos actuelles).',

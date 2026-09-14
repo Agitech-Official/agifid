@@ -45,6 +45,18 @@ const jsonLd = [
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: onboarding.title,
+    description: onboarding.subtitle,
+    step: onboarding.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.title,
+      text: s.text,
+    })),
+  },
 ];
 ---
 <Layout
@@ -54,6 +66,7 @@ const jsonLd = [
   title="AgiFid — Fiduciaire 100% dédiée aux sociétés sur Odoo"
   description="AgiFid, fiduciaire agréée membre de l'ITAA, et Agitech, intégrateur Odoo certifié : comptabilité, fiscalité, paie & RH et conseil financier pour les sociétés qui pilotent leur activité sur Odoo."
   canonical="https://agifid.be/"
+  altLangUrl="https://agifid.be/index-en.html"
   ogLocale="fr_BE"
   jsonLd={jsonLd}
   includeContactScripts

@@ -81,6 +81,19 @@ const jsonLd = [
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Our onboarding process',
+    description: 'From first contact to full speed, a clear 5-step journey.',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Discovery Call', text: 'We discuss your situation, needs and objectives.' },
+      { '@type': 'HowToStep', position: 2, name: 'Engagement letter signed', text: 'We formalize our collaboration and the scope of our services.' },
+      { '@type': 'HowToStep', position: 3, name: 'Defining a tax structure', text: 'An optimization model tailored to your situation, which then frames our entire support.' },
+      { '@type': 'HowToStep', position: 4, name: 'Odoo accounting training', text: 'We train you on data entry and managing your accounting in Odoo.' },
+      { '@type': 'HowToStep', position: 5, name: 'Ongoing bookkeeping', text: 'Ongoing follow-up, with periodic check-ins on your accounts and management control.' },
+    ],
+  },
 ];
 ---
 <Layout
@@ -90,6 +103,7 @@ const jsonLd = [
   title="AgiFid — Accounting firm 100% dedicated to companies on Odoo"
   description="AgiFid, a certified ITAA accounting firm, and Agitech, a certified Odoo integrator: accounting, tax, payroll & HR and financial advisory for companies running their business on Odoo."
   canonical="https://agifid.be/index-en.html"
+  altLangUrl="https://agifid.be/"
   ogLocale="en_GB"
   jsonLd={jsonLd}
   includeContactScripts
