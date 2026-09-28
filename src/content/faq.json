@@ -39,6 +39,10 @@
       "answer": "AgiFid et Agitech sont deux entités juridiquement et opérationnellement indépendantes. AgiFid est le comptable agréé (comptabilité, fiscalité, conseil), Agitech est l'intégrateur Odoo certifié (ERP, infrastructure IT). Elles collaborent étroitement pour éviter le renvoi de responsabilité classique entre comptable et intégrateur."
     },
     {
+      "question": "Si je romps mon contrat avec AgiFid ou Agitech, suis-je obligé d'arrêter avec l'autre ?",
+      "answer": "Non, il n'y a aucun lock-in. AgiFid et Agitech sont deux entités juridiquement et opérationnellement indépendantes, chacune liée à vous par son propre contrat. Rompre votre contrat comptable avec AgiFid n'a aucun impact sur votre contrat Odoo avec Agitech, et inversement : vous pouvez continuer avec l'une, avec l'autre, ou avec les deux, en toute liberté."
+    },
+    {
       "question": "Faut-il déjà utiliser Odoo pour devenir client d'AgiFid ?",
       "answer": "Non. AgiFid forme ses clients à la comptabilité dans Odoo dans le cadre de l'onboarding, avec une session dédiée à l'encodage et à la gestion comptable. Les sociétés qui ne sont pas encore sur Odoo peuvent être accompagnées conjointement par Agitech pour la mise en place de l'ERP."
     },
