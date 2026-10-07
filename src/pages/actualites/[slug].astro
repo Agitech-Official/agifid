@@ -4,6 +4,7 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 import Markdoc from '@markdoc/markdoc';
 import { addTocIds } from '../../lib/toc';
+import { seoTitle, seoDescription } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const reader = createReader(process.cwd(), keystaticConfig);
@@ -59,8 +60,8 @@ const jsonLd = [
   htmlLang={isEn ? 'en' : 'fr-BE'}
   lang={isEn ? 'en' : 'fr'}
   pageType="sub"
-  title={`${entry.title} — ${isEn ? 'AgiFid Insights' : 'Actualités AgiFid'}`}
-  description={entry.excerpt}
+  title={seoTitle(entry.title, isEn ? 'AgiFid Insights' : 'Actualités AgiFid')}
+  description={seoDescription(entry.excerpt)}
   canonical={canonical}
   ogLocale={isEn ? 'en_GB' : 'fr_BE'}
   jsonLd={jsonLd}
