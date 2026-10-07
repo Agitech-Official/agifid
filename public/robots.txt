@@ -5,4 +5,4 @@ Disallow: /merci-rdv.html
 Disallow: /keystatic
 Disallow: /api/
 
-Sitemap: https://agifid.be/sitemap.xml
+Sitemap: https://www.agifid.be/sitemap.xml

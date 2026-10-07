@@ -32,8 +32,8 @@ const readingTime = Math.max(1, Math.round(wordCount / 200));
 const isEn = entry.lang === 'en';
 const publishedDate = new Date(entry.date).toLocaleDateString(isEn ? 'en-GB' : 'fr-BE', { day: 'numeric', month: 'long', year: 'numeric' });
 
-const canonical = `https://agifid.be/actualites/${Astro.params.slug}.html`;
-const listUrl = isEn ? 'https://agifid.be/actualites-en.html' : 'https://agifid.be/actualites.html';
+const canonical = `https://www.agifid.be/actualites/${Astro.params.slug}.html`;
+const listUrl = isEn ? 'https://www.agifid.be/actualites-en.html' : 'https://www.agifid.be/actualites.html';
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -49,7 +49,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'AgiFid', item: 'https://agifid.be/' },
+      { '@type': 'ListItem', position: 1, name: 'AgiFid', item: 'https://www.agifid.be/' },
       { '@type': 'ListItem', position: 2, name: isEn ? 'Insights' : 'Actualités', item: listUrl },
       { '@type': 'ListItem', position: 3, name: entry.title, item: canonical },
     ],

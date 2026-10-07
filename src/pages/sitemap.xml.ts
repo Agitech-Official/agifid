@@ -4,7 +4,7 @@
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../keystatic.config';
 
-const SITE = 'https://agifid.be';
+const SITE = 'https://www.agifid.be';
 
 // FR/EN pairs that really are translations of each other -> hreflang alternates.
 const PAIRS: [string, string][] = [

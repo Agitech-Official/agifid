@@ -8,7 +8,7 @@ import keystatic from '@keystatic/astro';
 // output 'static' (Astro 5, per-route SSR opt-out) + vercel adapter: only /keystatic needs SSR (admin UI), rest of the
 // site stays prerendered/static like before.
 export default defineConfig({
-  site: 'https://agifid.be',
+  site: 'https://www.agifid.be',
   output: 'static',
   adapter: vercel(),
   build: {

@@ -13,7 +13,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'À propos d\'AgiFid',
-    url: 'https://agifid.be/a-propos.html',
+    url: 'https://www.agifid.be/a-propos.html',
     about: { '@type': 'Organization', name: 'AgiFid' },
   },
   ...experts.map((e) => ({
@@ -23,7 +23,7 @@ const jsonLd = [
     jobTitle: e.role,
     worksFor: { '@type': 'Organization', name: 'AgiFid' },
     ...(e.linkedin ? { sameAs: [e.linkedin] } : {}),
-    ...(e.photo ? { image: `https://agifid.be/assets/img/experts/${e.photo}` } : {}),
+    ...(e.photo ? { image: `https://www.agifid.be/assets/img/experts/${e.photo}` } : {}),
   })),
 ];
 ---
@@ -33,7 +33,7 @@ const jsonLd = [
   pageType="sub"
   title="À propos — AgiFid"
   description="AgiFid, fiduciaire agréée membre de l'ITAA, 100% dédiée aux sociétés sur Odoo. Notre équipe, notre approche, notre collaboration avec Agitech."
-  canonical="https://agifid.be/a-propos.html"
+  canonical="https://www.agifid.be/a-propos.html"
   ogLocale="fr_BE"
   jsonLd={jsonLd}
 >
