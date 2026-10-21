@@ -303,12 +303,15 @@
   .blog-back-link { display: inline-block; color: var(--violet); font-size: 0.9rem; margin-bottom: 1.5rem; }
   .blog-category-tag { display: inline-block; background: var(--violet-soft); color: var(--violet); font-family: var(--font-display); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.3rem 0.75rem; border-radius: 100px; margin-bottom: 0.75rem; }
   .blog-category-tag[data-category="Fiscalité"],
+  .blog-category-tag[data-category="Fiscaliteit"],
   .blog-category-tag[data-category="Tax"] { background: rgba(217,119,6,0.1); color: #b45309; }
   .blog-category-tag[data-category="Odoo"] { background: rgba(152,72,149,0.1); color: var(--agitech-violet); }
   .blog-category-tag[data-category="Paie & RH"],
-  .blog-category-tag[data-category="Payroll & HR"] { background: rgba(37,99,235,0.1); color: #2563eb; }
+  .blog-category-tag[data-category="Payroll & HR"],
+  .blog-category-tag[data-category="Loonadministratie & HR"] { background: rgba(37,99,235,0.1); color: #2563eb; }
   .blog-category-tag[data-category="Digital & IA"],
-  .blog-category-tag[data-category="Digital & AI"] { background: rgba(0,210,174,0.1); color: #00937a; }
+  .blog-category-tag[data-category="Digital & AI"],
+  .blog-category-tag[data-category="Digitaal & AI"] { background: rgba(0,210,174,0.1); color: #00937a; }
   .blog-article-header { max-width: 820px; }
   .blog-article-meta { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
   .blog-article-dot { color: var(--border); }

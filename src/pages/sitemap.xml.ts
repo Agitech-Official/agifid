@@ -9,7 +9,7 @@ const SITE = 'https://www.agifid.be';
 // FR/EN pairs that really are translations of each other -> hreflang alternates.
 const PAIRS: string[][] = [
   ['/', '/index-en.html', '/index-nl.html'],
-  ['/actualites.html', '/actualites-en.html'],
+  ['/actualites.html', '/actualites-en.html', '/actualites-nl.html'],
   ['/carrieres.html', '/carrieres-nl.html'],
 ];
 const SINGLES = ['/a-propos.html'];

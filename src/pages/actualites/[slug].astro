@@ -29,11 +29,16 @@ const { html: bodyHtml, toc } = addTocIds(rendered);
 
 const wordCount = rendered.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.round(wordCount / 200));
-const isEn = entry.lang === 'en';
-const publishedDate = new Date(entry.date).toLocaleDateString(isEn ? 'en-GB' : 'fr-BE', { day: 'numeric', month: 'long', year: 'numeric' });
+const L = entry.lang === 'en' || entry.lang === 'nl' ? entry.lang : 'fr';
+const T = {
+  fr: { htmlLang: 'fr-BE', date: 'fr-BE', og: 'fr_BE', list: '/actualites.html', insights: 'Actualités', suffix: 'Actualités AgiFid', back: '← Retour aux actualités', read: 'de lecture', toc: 'Sommaire', related: 'À lire aussi', ctaTitle: 'Une question sur votre comptabilité ?', ctaText: 'Parlez-en directement avec un expert AgiFid, sans blabla commercial.', ctaBtn: 'Parler à un expert', home: '/index.html' },
+  en: { htmlLang: 'en', date: 'en-GB', og: 'en_GB', list: '/actualites-en.html', insights: 'Insights', suffix: 'AgiFid Insights', back: '← Back to Insights', read: 'read', toc: 'Contents', related: 'Related articles', ctaTitle: 'A question about your accounting?', ctaText: 'Talk directly to an AgiFid expert, no sales pitch.', ctaBtn: 'Talk to an expert', home: '/index-en.html' },
+  nl: { htmlLang: 'nl-BE', date: 'nl-BE', og: 'nl_BE', list: '/actualites-nl.html', insights: 'Nieuws', suffix: 'AgiFid Nieuws', back: '← Terug naar het nieuws', read: 'leestijd', toc: 'Inhoud', related: 'Lees ook', ctaTitle: 'Een vraag over uw boekhouding?', ctaText: 'Praat rechtstreeks met een AgiFid-expert, zonder verkooppraatjes.', ctaBtn: 'Praat met een expert', home: '/index-nl.html' },
+}[L];
+const publishedDate = new Date(entry.date).toLocaleDateString(T.date, { day: 'numeric', month: 'long', year: 'numeric' });
 
 const canonical = `https://www.agifid.be/actualites/${Astro.params.slug}.html`;
-const listUrl = isEn ? 'https://www.agifid.be/actualites-en.html' : 'https://www.agifid.be/actualites.html';
+const listUrl = `https://www.agifid.be${T.list}`;
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -50,25 +55,25 @@ const jsonLd = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'AgiFid', item: 'https://www.agifid.be/' },
-      { '@type': 'ListItem', position: 2, name: isEn ? 'Insights' : 'Actualités', item: listUrl },
+      { '@type': 'ListItem', position: 2, name: T.insights, item: listUrl },
       { '@type': 'ListItem', position: 3, name: entry.title, item: canonical },
     ],
   },
 ];
 ---
 <Layout
-  htmlLang={isEn ? 'en' : 'fr-BE'}
-  lang={isEn ? 'en' : 'fr'}
+  htmlLang={T.htmlLang}
+  lang={L}
   pageType="sub"
-  title={seoTitle(entry.title, isEn ? 'AgiFid Insights' : 'Actualités AgiFid')}
+  title={seoTitle(entry.title, T.suffix)}
   description={seoDescription(entry.excerpt)}
   canonical={canonical}
-  ogLocale={isEn ? 'en_GB' : 'fr_BE'}
+  ogLocale={T.og}
   jsonLd={jsonLd}
 >
 <section class="blog-article-section">
   <div class="container">
-    <a class="blog-back-link" href={isEn ? '/actualites-en.html' : '/actualites.html'}>{isEn ? '← Back to Insights' : '← Retour aux actualités'}</a>
+    <a class="blog-back-link" href={T.list}>{T.back}</a>
     <div class="blog-article-header">
       {entry.category && <span class="blog-category-tag" data-category={entry.category}>{entry.category}</span>}
       <h1>{entry.title}</h1>
@@ -77,7 +82,7 @@ const jsonLd = [
         <span class="blog-article-dot">·</span>
         <span>{entry.author}</span>
         <span class="blog-article-dot">·</span>
-        <span>{readingTime} min {isEn ? 'read' : 'de lecture'}</span>
+        <span>{readingTime} min {T.read}</span>
       </div>
       <p class="blog-article-excerpt">{entry.excerpt}</p>
     </div>
@@ -86,7 +91,7 @@ const jsonLd = [
       {toc.length > 1 && (
         <aside class="blog-toc">
           <nav>
-            <h6>Sommaire</h6>
+            <h6>{T.toc}</h6>
             <ol>{toc.map((t) => <li><a href={`#${t.id}`}>{t.text}</a></li>)}</ol>
           </nav>
         </aside>
@@ -95,7 +100,7 @@ const jsonLd = [
     </div>
     {relatedEntries.length > 0 && (
       <div class="blog-related">
-        <h5>{isEn ? 'Related articles' : 'À lire aussi'}</h5>
+        <h5>{T.related}</h5>
         <div class="blog-related-grid">
           {relatedEntries.map((related) => (
             <a class="blog-related-card" href={`/actualites/${related.slug}.html`}>
@@ -107,9 +112,9 @@ const jsonLd = [
       </div>
     )}
     <div class="blog-article-cta">
-      <h5>{isEn ? 'A question about your accounting?' : 'Une question sur votre comptabilité ?'}</h5>
-      <p>{isEn ? 'Talk directly to an AgiFid expert, no sales pitch.' : 'Parlez-en directement avec un expert AgiFid, sans blabla commercial.'}</p>
-      <a class="btn btn-violet" href={isEn ? '/index-en.html#contact' : '/index.html#contact'}>{isEn ? 'Talk to an expert' : 'Parler à un expert'}</a>
+      <h5>{T.ctaTitle}</h5>
+      <p>{T.ctaText}</p>
+      <a class="btn btn-violet" href={`${T.home}#contact`}>{T.ctaBtn}</a>
     </div>
   </div>
 </section>

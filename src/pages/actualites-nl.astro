@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const posts = (await reader.collections.blog.all())
+  .map((p) => ({ slug: p.slug, ...p.entry }))
+  .filter((p) => p.published && p.lang === 'nl')
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+<Layout
+  htmlLang="nl-BE"
+  lang="nl"
+  pageType="sub"
+  title="Nieuws — AgiFid"
+  description="Boekhouding, fiscaliteit, loonadministratie en Odoo-beheer: onze experts duiden het Belgische fiscale en boekhoudkundige nieuws met praktisch advies."
+  canonical="https://www.agifid.be/actualites-nl.html"
+  altLangUrl="https://www.agifid.be/actualites.html"
+  ogLocale="nl_BE"
+>
+<section class="blog-list-section">
+  <div class="container">
+    <div class="title">
+      <h6 class="eyebrow">Nieuws</h6>
+      <h1>Boekhouding, fiscaliteit &amp; Odoo: advies van experts</h1>
+      <p>Ons team van boekhouders en Odoo-experts duidt het Belgische fiscale en boekhoudkundige nieuws en deelt praktisch advies om uw bedrijf met vertrouwen te leiden — zonder onnodig jargon.</p>
+    </div>
+    <div class="blog-list-grid">
+      {posts.map((post) => (
+        <a class="blog-card" href={`/actualites/${post.slug}.html`}>
+          {post.coverImage && <img src={`/assets/img/blog/${post.coverImage}`} alt={post.title} loading="lazy" />}
+          <div class="blog-card-body">
+            {post.category && <span class="blog-category-tag" data-category={post.category}>{post.category}</span>}
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+            <span class="blog-card-date">{new Date(post.date).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+          </div>
+        </a>
+      ))}
+      {posts.length === 0 && <p>Nog geen artikels gepubliceerd.</p>}
+    </div>
+  </div>
+</section>
+</Layout>

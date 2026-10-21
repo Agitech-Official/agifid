@@ -13,6 +13,7 @@ const strings = {
 }[lang];
 
 const homeHref = { fr: '/index.html', en: '/index-en.html', nl: '/index-nl.html' };
+const blogHref = { fr: '/actualites.html', en: '/actualites-en.html', nl: '/actualites-nl.html' }[lang];
 const jobsHref = lang === 'nl' ? '/carrieres-nl.html' : '/carrieres.html';
 
 // On a sub-page (e.g. merci-formulaire.html) there is no per-language anchor target,
@@ -30,7 +31,7 @@ const logoHref = lang === 'nl' ? '/index-nl.html' : pageType === 'home' && lang 
         <li><a href={`${base}#${strings.whyAnchor}`}>{strings.why}</a></li>
         <li><a href={`${base}#services`}>{strings.services}</a></li>
         <li><a href={`${base}#contact`}>{strings.contact}</a></li>
-        {lang !== 'nl' && <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>}
+        <li><a href={blogHref}>{strings.blog}</a></li>
         {lang !== 'en' && <li><a href={jobsHref}>Jobs</a></li>}
         <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
       </ul>
