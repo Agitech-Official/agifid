@@ -65,6 +65,7 @@ const base = pageType === 'home' ? '' : '/index.html';
             <li><a href={`${base}#contact`}>{strings.contact}</a></li>
             <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>
             {lang === 'fr' && <li><a href="/a-propos.html">{strings.about}</a></li>}
+            {lang === 'fr' && <li><a href="/carrieres.html">Carrières</a></li>}
             <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
           </ul>
           <div class="social-icons">

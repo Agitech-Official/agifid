@@ -11,7 +11,7 @@ const PAIRS: [string, string][] = [
   ['/', '/index-en.html'],
   ['/actualites.html', '/actualites-en.html'],
 ];
-const SINGLES = ['/a-propos.html'];
+const SINGLES = ['/a-propos.html', '/carrieres.html'];
 
 const url = (loc: string, lastmod?: string, alt?: [string, string]) => {
   const alternates = alt

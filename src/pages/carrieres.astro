@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const JOBS_URL = 'https://jobs.agifid.be';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Carrières — AgiFid',
+  url: 'https://www.agifid.be/carrieres.html',
+  about: { '@type': 'Organization', name: 'AgiFid', url: 'https://www.agifid.be' },
+};
+---
+<Layout
+  htmlLang="fr-BE"
+  lang="fr"
+  pageType="sub"
+  title="Carrières — AgiFid"
+  description="Rejoignez AgiFid, fiduciaire agréée ITAA 100% sur Odoo. Découvrez nos postes ouverts en Belgique."
+  canonical="https://www.agifid.be/carrieres.html"
+  ogLocale="fr_BE"
+  jsonLd={jsonLd}
+>
+<section class="about-section">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Carrières</h6>
+      <h1>AgiFid recrute</h1>
+      <p>Rejoignez une équipe performante et sympa, au cœur d'une fiduciaire qui travaille directement dans Odoo.</p>
+      <p class="about-cta"><a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">Voir tous nos postes ouverts</a></p>
+    </div>
+
+    <div class="about-block">
+      <h2>Pourquoi AgiFid ?</h2>
+      <ul class="about-list">
+        <li><strong>Une fiduciaire du futur</strong> — vous travaillez dans Odoo, avec des clients qui pilotent leur entreprise en temps réel.</li>
+        <li><strong>Un cadre solide</strong> — membre de l'ITAA : formation continue, déontologie et expertise reconnue.</li>
+        <li><strong>L'intégrité comme standard</strong> — on ne vend que ce dont le client a besoin, et on dit non quand c'est mieux pour lui.</li>
+        <li><strong>Adossés à Agitech</strong> — une collaboration étroite avec l'intégrateur Odoo certifié pour des dossiers sans friction.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>On bosse dur, on rigole bien</h2>
+      <p>Depuis nos bureaux à Auderghem, nous accompagnons chaque jour des PME belges pour que leur comptabilité serve à piloter l'entreprise, pas seulement à rester en règle.</p>
+    </div>
+
+    <div class="about-cta">
+      <a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">Voir tous nos postes ouverts</a>
+      <a class="btn btn-outline" href="/index.html#contact">Candidature spontanée</a>
+    </div>
+  </div>
+</section>
+</Layout>

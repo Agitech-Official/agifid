@@ -30,11 +30,11 @@ const logoHref = pageType === 'home' ? (lang === 'en' ? '/index-en.html' : '/ind
         <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
       </ul>
       {pageType === 'home' && (
-        <div class="lang-flag">
+        <div class="lang-flag" role="group" aria-label="Langue / Language">
           {lang === 'fr' ? (
-            <><span class="active">FR</span> / <a href="/index-en.html">EN</a></>
+            <><span class="lang-opt active" aria-current="true" lang="fr">FR</span><a class="lang-opt" href="/index-en.html" hreflang="en" lang="en" title="English">EN</a></>
           ) : (
-            <><a href="/index.html">FR</a> / <span class="active">EN</span></>
+            <><a class="lang-opt" href="/index.html" hreflang="fr" lang="fr" title="Français">FR</a><span class="lang-opt active" aria-current="true" lang="en">EN</span></>
           )}
         </div>
       )}
