@@ -123,16 +123,28 @@ const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 
       gtag('js', new Date());
       gtag('config', 'G-2RSXWQS0M1');
     }
+    // Visitors who refuse (or refused earlier) must not keep analytics/ads cookies set before the banner existed.
+    function purgeTrackingCookies() {
+      var host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach(function (c) {
+        var n = c.split('=')[0].trim();
+        if (!/^(_ga|_gid|_gat|_gcl|_clck|_clsk|_fbp)/.test(n)) return;
+        [host, '.' + host, 'www.' + host, ''].forEach(function (d) {
+          document.cookie = n + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/' + (d ? ';domain=' + d : '');
+        });
+      });
+    }
     var banner = document.getElementById('cookie-banner');
     var saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
     if (saved === 'granted') startTracking();
+    else if (saved === 'denied') purgeTrackingCookies();
     else if (!saved && banner) banner.hidden = false;
     banner && banner.addEventListener('click', function (e) {
       var v = e.target && e.target.getAttribute && e.target.getAttribute('data-consent');
       if (!v) return;
       try { localStorage.setItem(KEY, v); } catch (err) {}
       banner.hidden = true;
-      if (v === 'granted') startTracking();
+      if (v === 'granted') startTracking(); else purgeTrackingCookies();
     });
     document.addEventListener('click', function (e) {
       if (e.target && e.target.closest && e.target.closest('[data-cookie-settings]')) { e.preventDefault(); if (banner) banner.hidden = false; }
