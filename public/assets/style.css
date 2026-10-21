@@ -264,6 +264,9 @@
     .main_menu ul { flex-direction: column; gap: 1.25rem; }
     .lines-button { display: flex; }
     .discuss-btn { margin-top: 1.5rem; }
+    /* Language switcher first in the menu panel, with finger-sized targets. */
+    .lang-flag { order: -1; display: flex; width: 100%; padding: 4px; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .lang-flag .lang-opt { flex: 1; text-align: center; padding: 0.7rem 0; min-height: 44px; line-height: 1.6; }
     .why-section .row, .talk-section .row, .methodology-section .row { grid-template-columns: 1fr; }
     .odoo-expertise-content, .our-services-content { grid-template-columns: 1fr; }
     .methodology-section > .container > .row > .content > .row:last-child { grid-template-columns: 1fr; }
