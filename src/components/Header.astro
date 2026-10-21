@@ -34,7 +34,9 @@ const logoHref = homeHref[lang];
         <li><a href={`${base}#contact`}>{strings.contact}</a></li>
         <li><a href={blogHref}>{strings.blog}</a></li>
         <li><a href={jobsHref}>Jobs</a></li>
-        <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
+        {lang === 'fr'
+          ? <li><a href="/integrateur-odoo-agitech.html">{strings.agitech}</a></li>
+          : <li><a href={`https://agitech.io/${lang}/comptabilite-odoo-agifid/`} target="_blank" rel="noopener">{strings.agitech}</a></li>}
       </ul>
       <div class="lang-flag" role="group" aria-label="Langue / Language / Taal">
         {([['fr', 'FR', 'Français'], ['en', 'EN', 'English'], ['nl', 'NL', 'Nederlands']] as const).map(([code, label, name]) =>

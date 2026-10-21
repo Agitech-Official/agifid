@@ -12,7 +12,7 @@ const PAIRS: string[][] = [
   ['/actualites.html', '/actualites-en.html', '/actualites-nl.html'],
   ['/carrieres.html', '/carrieres-en.html', '/carrieres-nl.html'],
 ];
-const SINGLES = ['/a-propos.html'];
+const SINGLES = ['/a-propos.html', '/integrateur-odoo-agitech.html'];
 
 const url = (loc: string, lastmod?: string, alt?: string[]) => {
   const alternates = alt

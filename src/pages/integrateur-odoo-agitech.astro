@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Agitech, intégrateur Odoo partenaire d\'AgiFid',
+  url: 'https://www.agifid.be/integrateur-odoo-agitech.html',
+  about: { '@type': 'Organization', name: 'Agitech', url: 'https://agitech.io' },
+};
+---
+<Layout
+  htmlLang="fr-BE"
+  lang="fr"
+  pageType="sub"
+  title="Agitech, notre partenaire intégrateur Odoo — AgiFid"
+  description="AgiFid travaille avec Agitech, intégrateur Odoo partenaire Silver : Odoo bien configuré, comptabilité bien tenue, deux experts indépendants qui collaborent."
+  canonical="https://www.agifid.be/integrateur-odoo-agitech.html"
+  ogLocale="fr_BE"
+  jsonLd={jsonLd}
+>
+<section class="about-section">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Notre partenaire Odoo</h6>
+      <h1>Agitech, l'intégrateur Odoo qui travaille avec nous</h1>
+      <p>Une comptabilité fiable commence par un Odoo bien configuré. C'est le métier d'Agitech, intégrateur Odoo partenaire Silver en Belgique, avec qui nous collaborons au quotidien.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>Qui fait quoi</h2>
+      <p>Agitech et AgiFid sont deux entités juridiquement et opérationnellement indépendantes. <a href="https://agitech.io/comptabilite-odoo-agifid/">Agitech implémente et fait évoluer votre Odoo</a> : comptabilité, facturation, achats, stock, développements sur mesure. AgiFid, fiduciaire agréée membre de l'ITAA, tient votre comptabilité et gère votre fiscalité directement dans ce même Odoo.</p>
+      <ul class="about-list">
+        <li><strong>Un seul outil</strong> — votre comptable travaille dans votre Odoo, sans double encodage ni fichiers échangés.</li>
+        <li><strong>Une coordination directe</strong> — l'intégrateur et la fiduciaire se parlent, fini le renvoi de responsabilité entre prestataire informatique et comptable.</li>
+        <li><strong>Un Odoo pensé pour la comptabilité</strong> — plan comptable, TVA, facturation électronique et clôtures paramétrés dès l'implémentation.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>Vous n'avez pas encore Odoo ?</h2>
+      <p>Si vous hésitez à passer à Odoo, ou si votre Odoo actuel ne vous convient plus, découvrez <a href="https://agitech.io/odoo-erp/">l'offre Odoo ERP d'Agitech</a> : implémentation, migration, développement sur mesure et support.</p>
+    </div>
+
+    <div class="about-cta">
+      <a class="btn btn-violet" href="/index.html#contact">Parler à un expert</a>
+    </div>
+  </div>
+</section>
+</Layout>
