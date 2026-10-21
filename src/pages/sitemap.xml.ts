@@ -7,18 +7,19 @@ import keystaticConfig from '../../keystatic.config';
 const SITE = 'https://www.agifid.be';
 
 // FR/EN pairs that really are translations of each other -> hreflang alternates.
-const PAIRS: [string, string][] = [
-  ['/', '/index-en.html'],
+const PAIRS: string[][] = [
+  ['/', '/index-en.html', '/index-nl.html'],
   ['/actualites.html', '/actualites-en.html'],
+  ['/carrieres.html', '/carrieres-nl.html'],
 ];
-const SINGLES = ['/a-propos.html', '/carrieres.html'];
+const SINGLES = ['/a-propos.html'];
 
-const url = (loc: string, lastmod?: string, alt?: [string, string]) => {
+const url = (loc: string, lastmod?: string, alt?: string[]) => {
   const alternates = alt
-    ? [
-        `<xhtml:link rel="alternate" hreflang="fr" href="${SITE}${alt[0]}"/>`,
-        `<xhtml:link rel="alternate" hreflang="en" href="${SITE}${alt[1]}"/>`,
-      ].join('')
+    ? alt.map((href) => {
+        const lang = href.includes('-nl') ? 'nl' : href.includes('-en') ? 'en' : 'fr';
+        return `<xhtml:link rel="alternate" hreflang="${lang}" href="${SITE}${href}"/>`;
+      }).join('')
     : '';
   return `<url><loc>${SITE}${loc}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}${alternates}</url>`;
 };

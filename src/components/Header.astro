@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  lang: 'fr' | 'en';
+  lang: 'fr' | 'en' | 'nl';
   /** 'home' = index.html / index-en.html (in-page anchors). 'sub' = any other page (anchors point back to index.html). */
   pageType: 'home' | 'sub';
 }
@@ -9,12 +9,16 @@ const { lang, pageType } = Astro.props;
 const strings = {
   fr: { why: 'Pourquoi nous', services: 'Services', contact: 'Contact', blog: 'Actualités', agitech: 'Agitech', discuss: 'Discutons', whyAnchor: 'pourquoi' },
   en: { why: 'Why us', services: 'Services', contact: 'Contact', blog: 'Insights', agitech: 'Agitech', discuss: "Let's talk", whyAnchor: 'why' },
+  nl: { why: 'Waarom wij', services: 'Diensten', contact: 'Contact', blog: 'Nieuws', agitech: 'Agitech', discuss: 'Laten we praten', whyAnchor: 'waarom' },
 }[lang];
+
+const homeHref = { fr: '/index.html', en: '/index-en.html', nl: '/index-nl.html' };
+const jobsHref = lang === 'nl' ? '/carrieres-nl.html' : '/carrieres.html';
 
 // On a sub-page (e.g. merci-formulaire.html) there is no per-language anchor target,
 // so nav links always point back to the French homepage's sections.
-const base = pageType === 'home' ? '' : '/index.html';
-const logoHref = pageType === 'home' ? (lang === 'en' ? '/index-en.html' : '/index.html') : '/index.html';
+const base = pageType === 'home' ? '' : lang === 'nl' ? '/index-nl.html' : '/index.html';
+const logoHref = lang === 'nl' ? '/index-nl.html' : pageType === 'home' && lang === 'en' ? '/index-en.html' : '/index.html';
 ---
 <header>
   <div class="container header-wrap">
@@ -26,16 +30,16 @@ const logoHref = pageType === 'home' ? (lang === 'en' ? '/index-en.html' : '/ind
         <li><a href={`${base}#${strings.whyAnchor}`}>{strings.why}</a></li>
         <li><a href={`${base}#services`}>{strings.services}</a></li>
         <li><a href={`${base}#contact`}>{strings.contact}</a></li>
-        <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>
+        {lang !== 'nl' && <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>}
+        {lang !== 'en' && <li><a href={jobsHref}>Jobs</a></li>}
         <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
       </ul>
       {pageType === 'home' && (
-        <div class="lang-flag" role="group" aria-label="Langue / Language">
-          {lang === 'fr' ? (
-            <><span class="lang-opt active" aria-current="true" lang="fr">FR</span><a class="lang-opt" href="/index-en.html" hreflang="en" lang="en" title="English">EN</a></>
-          ) : (
-            <><a class="lang-opt" href="/index.html" hreflang="fr" lang="fr" title="Français">FR</a><span class="lang-opt active" aria-current="true" lang="en">EN</span></>
-          )}
+        <div class="lang-flag" role="group" aria-label="Langue / Language / Taal">
+          {([['fr', 'FR', 'Français'], ['en', 'EN', 'English'], ['nl', 'NL', 'Nederlands']] as const).map(([code, label, name]) =>
+            code === lang
+              ? <span class="lang-opt active" aria-current="true" lang={code}>{label}</span>
+              : <a class="lang-opt" href={homeHref[code]} hreflang={code} lang={code} title={name}>{label}</a>)}
         </div>
       )}
       <div class="discuss-btn"><a href={`${base}#contact`}>{strings.discuss}</a></div>

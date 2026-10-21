@@ -4,7 +4,7 @@ import Footer from '../components/Footer.astro';
 
 export interface Props {
   htmlLang: string;
-  lang: 'fr' | 'en';
+  lang: 'fr' | 'en' | 'nl';
   pageType: 'home' | 'sub';
   title: string;
   description: string;
@@ -26,7 +26,7 @@ const {
   altLangUrl, includeContactScripts = false,
 } = Astro.props;
 
-const otherLang = lang === 'fr' ? 'en' : 'fr';
+const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 'fr';
 ---
 <!DOCTYPE html>
 <html lang={htmlLang}>
@@ -54,17 +54,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {canonical && (
   <>
     <link rel="canonical" href={canonical}>
-    {altLangUrl ? (
+    {pageType === 'home' ? (
+      <>
+        <link rel="alternate" hreflang="fr" href="https://www.agifid.be/">
+        <link rel="alternate" hreflang="en" href="https://www.agifid.be/index-en.html">
+        <link rel="alternate" hreflang="nl" href="https://www.agifid.be/index-nl.html">
+        <link rel="alternate" hreflang="x-default" href="https://www.agifid.be/">
+      </>
+    ) : altLangUrl ? (
       <>
         <link rel="alternate" hreflang={lang} href={canonical}>
         <link rel="alternate" hreflang={otherLang} href={altLangUrl}>
         <link rel="alternate" hreflang="x-default" href={lang === 'fr' ? canonical : altLangUrl}>
-      </>
-    ) : pageType === 'home' ? (
-      <>
-        <link rel="alternate" hreflang="fr" href="https://www.agifid.be/">
-        <link rel="alternate" hreflang="en" href="https://www.agifid.be/index-en.html">
-        <link rel="alternate" hreflang="x-default" href="https://www.agifid.be/">
       </>
     ) : (
       <link rel="alternate" hreflang={lang} href={canonical}>

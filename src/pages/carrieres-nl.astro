@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const JOBS_URL = 'https://jobs.agifid.be';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Jobs — AgiFid',
+  url: 'https://www.agifid.be/carrieres-nl.html',
+  about: { '@type': 'Organization', name: 'AgiFid', url: 'https://www.agifid.be' },
+};
+---
+<Layout
+  htmlLang="nl-BE"
+  lang="nl"
+  pageType="sub"
+  title="Jobs — AgiFid"
+  description="Word lid van het team van AgiFid, ITAA-erkend boekhoudkantoor 100% op Odoo. Ontdek onze openstaande vacatures in België."
+  canonical="https://www.agifid.be/carrieres-nl.html"
+  altLangUrl="https://www.agifid.be/carrieres.html"
+  ogLocale="nl_BE"
+  jsonLd={jsonLd}
+>
+<section class="about-section">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Jobs</h6>
+      <h1>AgiFid zoekt collega's</h1>
+      <p>Word lid van een performant en leuk team, in een boekhoudkantoor dat rechtstreeks in Odoo werkt.</p>
+      <p class="about-cta"><a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">Bekijk al onze vacatures</a></p>
+    </div>
+
+    <div class="about-block">
+      <h2>Waarom AgiFid?</h2>
+      <ul class="about-list">
+        <li><strong>Een boekhoudkantoor van de toekomst</strong> — u werkt in Odoo, met klanten die hun bedrijf in real time sturen.</li>
+        <li><strong>Een solide kader</strong> — lid van het ITAA: permanente opleiding, deontologie en erkende expertise.</li>
+        <li><strong>Integriteit als standaard</strong> — we verkopen enkel wat de klant nodig heeft, en we zeggen nee als dat beter is voor hem.</li>
+        <li><strong>Verbonden met Agitech</strong> — een nauwe samenwerking met de gecertificeerde Odoo-integrator voor dossiers zonder wrijving.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>We werken hard, en we lachen graag</h2>
+      <p>Vanuit onze kantoren in Oudergem begeleiden we dagelijks Belgische kmo's, zodat hun boekhouding dient om het bedrijf te sturen, en niet enkel om in regel te blijven.</p>
+    </div>
+
+    <div class="about-cta">
+      <a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">Bekijk al onze vacatures</a>
+      <a class="btn btn-outline" href="/index-nl.html#contact">Spontane sollicitatie</a>
+    </div>
+  </div>
+</section>
+</Layout>

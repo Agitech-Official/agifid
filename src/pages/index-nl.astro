@@ -1,0 +1,529 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqItems = [
+  {
+    question: 'Wat is AgiFid?',
+    answer: 'AgiFid is een erkend boekhoudkantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren. Het werkt nauw samen met Agitech, een gecertificeerde Odoo-integrator, voor een afgestemde begeleiding tussen boekhouding en beheertools.',
+  },
+  {
+    question: 'Hoeveel kost een boekhouder voor een kmo in België?',
+    answer: 'Reken op ongeveer €150 tot enkele honderden euro per maand, afhankelijk van de grootte van het bedrijf, het btw-stelsel en het aantal documenten. Bij AgiFid zijn de prijzen vast en transparant: €3.500 excl. btw/jaar voor een beheersvennootschap, €6.500 excl. btw/jaar voor 1 tot 5 VTE, en op aanvraag daarboven.',
+  },
+  {
+    question: 'Hoe kies ik een goede boekhouder in België?',
+    answer: 'Controleer eerst of hij lid is van het ITAA: alleen die beschermde titel garandeert erkende expertise, permanente opleiding en strenge deontologie. Vergelijk daarna de transparantie van de prijzen, de reactiesnelheid en de specialisatie in uw sector of beheertool (bijvoorbeeld Odoo).',
+  },
+  {
+    question: 'Kan ik halverwege het jaar van boekhouder veranderen?',
+    answer: 'Ja, u kunt op elk moment van boekhouder veranderen, mits u de opzegtermijn in uw contract respecteert (of een redelijke termijn bij een mondelinge afspraak). Het nieuwe kantoor haalt uw dossiers op bij het vorige; bij AgiFid wordt deze overgang vanaf het kennismakingsgesprek geregeld.',
+  },
+  {
+    question: 'Is elektronische facturatie (PEPPOL) verplicht in België?',
+    answer: 'Ja, sinds 1 januari 2026 is elektronische facturatie in PEPPOL-formaat verplicht voor btw-plichtige ondernemingen in België. Odoo ondersteunt deze standaard rechtstreeks, wat de naleving vergemakkelijkt voor bedrijven die al op Odoo werken.',
+  },
+  {
+    question: 'Vervangt Odoo een boekhouder of boekhoudkantoor?',
+    answer: 'Nee. Odoo is een beheertool die facturatie, aankopen en boekhouding centraliseert, maar vervangt de wettelijke rol van de boekhouder niet. Het boekhoudkantoor blijft verantwoordelijk voor de fiscale naleving, de btw-aangiften en de goedkeuring van de jaarrekening — Odoo maakt dat werk eenvoudiger en betrouwbaarder, maar komt er niet in de plaats van.',
+  },
+  {
+    question: 'Wat is het verschil tussen een boekhouder en een erkend accountant in België?',
+    answer: '"Accountant" (expert-comptable) is een beschermde titel, voorbehouden aan ITAA-leden die een erkende opleiding hebben gevolgd en onder strenge deontologie en kwaliteitscontrole vallen. Een niet-erkende boekhouder mag een boekhouding voeren, maar kan niet dezelfde beroepsaansprakelijkheid dragen of die titel gebruiken.',
+  },
+  {
+    question: 'Wat is het ITAA en waarom is dat belangrijk?',
+    answer: 'Het ITAA (Instituut voor de Accountants en de Belastingadviseurs) is de Belgische instantie die het beroep van accountant en belastingadviseur reglementeert. Lid zijn van het ITAA garandeert erkende expertise, verplichte permanente opleiding en strenge deontologie — wat de klant rechtstreeks beschermt.',
+  },
+  {
+    question: 'Wat is het verschil tussen AgiFid en Agitech?',
+    answer: 'AgiFid en Agitech zijn twee juridisch en operationeel onafhankelijke entiteiten. AgiFid is de erkende boekhouder (boekhouding, fiscaliteit, advies), Agitech is de gecertificeerde Odoo-integrator (ERP, IT-infrastructuur). Ze werken nauw samen om het klassieke heen-en-weer schuiven van verantwoordelijkheid tussen boekhouder en integrator te vermijden.',
+  },
+  {
+    question: 'Als ik mijn contract met AgiFid of Agitech beëindig, moet ik dan ook met de andere stoppen?',
+    answer: 'Nee, er is geen lock-in. AgiFid en Agitech zijn twee juridisch en operationeel onafhankelijke entiteiten, elk met een eigen contract met u. Het beëindigen van uw boekhoudcontract met AgiFid heeft geen invloed op uw Odoo-contract met Agitech, en omgekeerd: u bent vrij om met een van beide, of met beide, door te gaan.',
+  },
+  {
+    question: 'Moet ik al op Odoo werken om klant van AgiFid te worden?',
+    answer: 'Nee. AgiFid leidt zijn klanten op in Odoo-boekhouding als onderdeel van de onboarding, met een specifieke sessie over gegevensinvoer en boekhoudbeheer. Bedrijven die nog niet op Odoo zitten, kunnen samen met Agitech worden begeleid om de ERP in te stellen.',
+  },
+  {
+    question: 'Wat zijn de boekhoudkundige verplichtingen van een BV in België?',
+    answer: 'Een BV moet een dubbele boekhouding voeren, elk jaar de jaarrekening neerleggen bij de Nationale Bank van België en periodieke btw-aangiften indienen (maandelijks of driemaandelijks, afhankelijk van het stelsel). Ze moet ook de vennootschapsbelasting aangeven en betalen.',
+  },
+  {
+    question: 'Hoe lang duurt het om met een nieuw boekhoudkantoor te starten?',
+    answer: 'Bij AgiFid verloopt de onboarding in 5 stappen: kennismakingsgesprek, ondertekening van de opdrachtbrief, bepaling van een fiscale structuur, opleiding in Odoo-boekhouding, en daarna de start van de boekhouding met periodieke opvolging. De duur hangt vooral af van de beschikbaarheid van de klant tijdens de opleidingsfase.',
+  },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AccountingService',
+    name: 'AgiFid',
+    url: 'https://www.agifid.be/index-nl.html',
+    description: 'Erkend boekhoudkantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '11 Clos Lucien Outers',
+      postalCode: '1160',
+      addressLocality: 'Brussel',
+      addressCountry: 'BE',
+    },
+    areaServed: 'BE',
+    sameAs: [
+      'https://www.linkedin.com/company/agitechbelgium/',
+      'https://www.youtube.com/@Agitech-OdooPartner',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Ons onboardingproces',
+    description: 'Van het eerste contact tot volle snelheid: een duidelijk traject in 5 stappen.',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Kennismakingsgesprek', text: 'We bespreken uw situatie, behoeften en doelstellingen.' },
+      { '@type': 'HowToStep', position: 2, name: 'Opdrachtbrief ondertekend', text: 'We leggen onze samenwerking en de omvang van onze diensten vast.' },
+      { '@type': 'HowToStep', position: 3, name: 'Bepaling van een fiscale structuur', text: 'Een optimalisatiemodel op maat van uw situatie, dat onze volledige begeleiding omkadert.' },
+      { '@type': 'HowToStep', position: 4, name: 'Opleiding Odoo-boekhouding', text: 'We leiden u op in gegevensinvoer en het beheer van uw boekhouding in Odoo.' },
+      { '@type': 'HowToStep', position: 5, name: 'Lopende boekhouding', text: 'Permanente opvolging, met periodieke controles van uw rekeningen en beheerscontrole.' },
+    ],
+  },
+];
+---
+<Layout
+  htmlLang="nl-BE"
+  lang="nl"
+  pageType="home"
+  title="AgiFid — Boekhoudkantoor 100% gewijd aan bedrijven op Odoo"
+  description="ITAA-erkend boekhoudkantoor 100% gewijd aan Odoo-bedrijven: boekhouding, fiscaliteit, loonadministratie en advies, samen met Agitech, gecertificeerde Odoo-integrator."
+  canonical="https://www.agifid.be/index-nl.html"
+  altLangUrl="https://www.agifid.be/"
+  ogLocale="nl_BE"
+  jsonLd={jsonLd}
+  includeContactScripts
+>
+<section class="home-banner">
+  <div class="container row">
+    <h6>98 bedrijven vertrouwen ons al</h6>
+    <h1>Boekhoudkantoor <span>100% gewijd</span><br>aan bedrijven op Odoo</h1>
+    <a class="btn btn-light" href="#contact">Praat met een expert</a>
+  </div>
+</section>
+<div class="brand-bar"></div>
+
+<section class="certified-experts-section">
+  <div class="container">
+    <h6>Odoo Silver Partner</h6>
+    <h3>Experts in boekhouding &amp; Odoo</h3>
+    <div class="experts-slider">
+      <div class="expert-member">
+        <img src="assets/img/mika-team.png" alt="Mika" loading="lazy">
+        <div class="expert-info"><h5>Mika</h5><h6>ITAA-accountant</h6></div>
+      </div>
+      <div class="expert-member">
+        <img src="assets/img/sam-team.png" alt="Diego" loading="lazy">
+        <div class="expert-info"><h5>Diego</h5><h6>Odoo-expert</h6></div>
+      </div>
+      <div class="expert-member">
+        <img src="assets/img/diego-team.png" alt="Mariano" loading="lazy">
+        <div class="expert-info"><h5>Mariano</h5><h6>ITAA-accountant</h6></div>
+      </div>
+      <div class="expert-member">
+        <img src="assets/img/mariano-team.png" alt="Sam" loading="lazy">
+        <div class="expert-info"><h5>Sam</h5><h6>Odoo-expert</h6></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section" id="waarom">
+  <div class="container">
+    <div class="why-title"><h3>Een methodologie gebouwd voor Odoo</h3></div>
+    <div class="row">
+      <div class="why-image">
+        <div class="why-img"><img src="assets/img/why-choose-us-sec-img-scaled.jpg" alt="Odoo-methodologie" loading="lazy"></div>
+      </div>
+      <div class="why-content">
+        <div class="item">
+          <h4>01</h4>
+          <h5>Boekhouding in real time</h5>
+          <ul>
+            <li>Volg uw balans en resultatenrekening in real time: echt inzicht in uw bedrijf.</li>
+            <li>Eén aanspreekpunt voor uw Odoo. Geen heen-en-weer meer waarbij de schuld wordt doorgeschoven.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h4>02</h4>
+          <h5>Uw bedrijf begrijpen</h5>
+          <ul>
+            <li>Uw boekhouder werkt rechtstreeks in Odoo.</li>
+            <li>Actuele boekhouding en een KPI-dashboard in Odoo.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h4>03</h4>
+          <h5>Word zelfstandig</h5>
+          <ul>
+            <li>We leiden u op in Odoo-boekhouding.</li>
+            <li>Beheers uw boekhouding en word zelfstandig.</li>
+            <li>Goed ingevoerd langs uw kant: dan rekenen we de gegevensinvoer niet aan.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="odoo-expertise-section">
+  <div class="container">
+    <h3>360°-begeleiding</h3>
+    <div class="odoo-expertise-content">
+      <div class="item">
+        <div class="icon"><img src="assets/img/base-de-donnees.png" alt="Icoon boekhouding" loading="lazy"></div>
+        <h6>Boekhouding</h6>
+        <ul>
+          <li>Volledige boekhouding en wettelijke naleving.</li>
+          <li>Opmaak van de jaarrekening en btw-aangiften.</li>
+          <li>Betrouwbare financiële opvolging om uw bedrijf met een gerust gemoed te leiden.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="icon"><img src="assets/img/diagramme-circulaire.png" alt="Icoon fiscaliteit" loading="lazy"></div>
+        <h6>Fiscaliteit</h6>
+        <ul>
+          <li>Belastingaangiften voor particulieren, zelfstandigen en vennootschappen.</li>
+          <li>Fiscale optimalisatie binnen de grenzen van de wet.</li>
+          <li>Bijstand bij controles en administratieve procedures.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="icon"><img src="assets/img/conseiller-financier.png" alt="Icoon loonadministratie en HR" loading="lazy"></div>
+        <h6>Loonadministratie &amp; HR</h6>
+        <ul>
+          <li>Loonbeheer en aangiften sociale zekerheid.</li>
+          <li>Hulp bij de personeelsadministratie.</li>
+          <li>Advies over verloning en HR-beheer.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="icon"><img src="assets/img/analytique.png" alt="Icoon financiële analyse en advies" loading="lazy"></div>
+        <h6>Financiële analyse &amp; advies</h6>
+        <ul>
+          <li>Analyse van de rentabiliteit en prestaties van uw bedrijf.</li>
+          <li>Budgettering, prognoses en financiële planning.</li>
+          <li>Strategisch advies om uw groei te ondersteunen.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="icon"><img src="assets/img/bouclier.png" alt="Icoon juridisch" loading="lazy"></div>
+        <h6>Juridisch</h6>
+        <ul>
+          <li>Hulp bij de juridische formaliteiten van uw bedrijf.</li>
+          <li>Opmaak en opvolging van essentiële administratieve documenten.</li>
+          <li>Advies om uw bedrijf in orde te houden.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="icon"><img src="assets/img/codage.png" alt="Icoon digitalisering en dashboards" loading="lazy"></div>
+        <h6>Digitalisering &amp; dashboards</h6>
+        <ul>
+          <li>Invoering van digitale tools op maat van uw bedrijf.</li>
+          <li>Automatisering van boekhoudkundige en administratieve processen.</li>
+          <li>Interactieve dashboards om uw kerncijfers in real time te volgen.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-services-section" id="services">
+  <div class="container">
+    <div class="title">
+      <h2>Onze formules &amp; diensten</h2>
+      <h6>We passen ons aan uw situatie aan: boekhouding, tech, of beide. U kiest.</h6>
+    </div>
+    <div class="our-services-content">
+      <div class="item">
+        <a class="item-wrap" href="#contact">
+          <h4>Beheersvennootschap</h4>
+          <ul>
+            <li>✓ Jaarrekening &amp; neerlegging bij de NBB</li>
+            <li>✓ Periodieke btw-aangiften</li>
+            <li>✓ Aangifte vennootschapsbelasting</li>
+            <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
+            <li>✓ 1u sessie over de bespreking van de jaarrekening</li>
+            <li>✓ 2u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ Loyaliteitsbonus voor modelklanten</li>
+            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✗ Invoer van de loonfiches van uw werknemers</li>
+            <li>✗ Beheerscontrole</li>
+          </ul>
+          <span class="light-page-link">€3.500 / jaar</span>
+        </a>
+      </div>
+      <div class="item">
+        <a class="item-wrap" href="#contact">
+          <h4>1 tot 5 VTE</h4>
+          <ul>
+            <li>✓ Jaarrekening &amp; neerlegging bij de NBB</li>
+            <li>✓ Periodieke btw-aangiften</li>
+            <li>✓ Aangifte vennootschapsbelasting</li>
+            <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
+            <li>✓ 2u sessie over de bespreking van de jaarrekening</li>
+            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ Loyaliteitsbonus voor modelklanten</li>
+            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✓ Invoer van de loonfiches van uw werknemers</li>
+            <li>✓ Beheerscontrole</li>
+          </ul>
+          <span class="light-page-link">€6.500 / jaar</span>
+        </a>
+      </div>
+      <div class="item">
+        <a class="item-wrap" href="#contact">
+          <h4>Meer dan 5 VTE</h4>
+          <ul>
+            <li>✓ Jaarrekening &amp; neerlegging bij de NBB</li>
+            <li>✓ Periodieke btw-aangiften</li>
+            <li>✓ Aangifte vennootschapsbelasting</li>
+            <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
+            <li>✓ 2u sessie over de bespreking van de jaarrekening</li>
+            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ Loyaliteitsbonus voor modelklanten</li>
+            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✓ Invoer van de loonfiches van uw werknemers</li>
+            <li>✓ Beheerscontrole</li>
+          </ul>
+          <span class="light-page-link">Prijs op aanvraag</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="union-section">
+  <div class="container">
+    <h3>AgiFid &amp; Agitech — integrator en boekhouder, eindelijk verenigd.</h3>
+    <p class="union-note">AgiFid en Agitech zijn twee juridisch en operationeel onafhankelijke entiteiten die nauw samenwerken om u een afgestemde begeleiding te bieden.</p>
+    <div class="union-diagram">
+      <div class="union-node">
+        <div class="tag">Erkend boekhouder</div>
+        <div class="name"><img src="assets/img/logo-agifid-dark.png" alt="AgiFid" loading="lazy"></div>
+        <div class="role">Boekhouding, fiscaliteit, advies</div>
+      </div>
+      <div class="union-plus">+</div>
+      <div class="union-node">
+        <div class="tag">Gecertificeerde integrator</div>
+        <div class="name"><a href="https://agitech.io" target="_blank" rel="noopener"><img src="assets/img/agitech-logo-dark.svg" alt="Agitech" loading="lazy"></a></div>
+        <div class="role">Odoo, ERP, IT-infrastructuur</div>
+      </div>
+    </div>
+    <div class="union-grid">
+      <div class="card">
+        <h5>Een echt holistische aanpak</h5>
+        <p>De business analysts van Agitech geven u concrete inzichten om uw bedrijf te sturen — niet enkel om in regel te blijven.</p>
+      </div>
+      <div class="card">
+        <h5>Geen schuld meer doorschuiven</h5>
+        <p>De integrator beheert Odoo, de boekhouder beheert de boekhouding — met rechtstreekse afstemming tussen beide teams.</p>
+      </div>
+      <div class="card">
+        <h5>Eén enkele factuur</h5>
+        <p>Zodra beheer en boekhouding via Agitech en AgiFid in Odoo lopen, komt alles samen op één factuur.</p>
+      </div>
+      <div class="card">
+        <h5>Echte boekhouders in uw beheerprojecten</h5>
+        <p>Uw boekhouder is meer dan een boekhouder: hij is rechtstreeks betrokken bij uw beheerprojecten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="methodology-section">
+  <div class="container">
+    <div class="row">
+      <div class="title">
+        <img src="https://www.itaa.be/wp-content/uploads/logo_itaa_transparant.svg" alt="ITAA-logo" style="height:44px; width:auto; margin-bottom:1.25rem;" loading="lazy">
+        <h3>ITAA-lid</h3>
+      </div>
+      <div class="content">
+        <div class="para-text"><h6>Uw garantie op professionele, gereglementeerde en kwaliteitsvolle begeleiding.</h6></div>
+        <div class="row">
+          <div class="methodology-content"><div class="item"><h4>01</h4><h5>Erkende expertise</h5><p>Vaardigheden die erkend en gevalideerd zijn door het Instituut voor de Accountants en de Belastingadviseurs.</p></div></div>
+          <div class="methodology-content"><div class="item"><h4>02</h4><h5>Permanente opleiding</h5><p>Voortdurend bijgewerkte kennis om u steeds relevant advies te geven.</p></div></div>
+          <div class="methodology-content"><div class="item"><h4>03</h4><h5>Strenge deontologie</h5><p>Een sterke inzet voor ethiek, vertrouwelijkheid en onafhankelijkheid.</p></div></div>
+          <div class="methodology-content"><div class="item"><h4>04</h4><h5>Bescherming van de klant</h5><p>Een gereglementeerd kader dat de kwaliteit van de dienstverlening en de veiligheid van onze begeleiding garandeert.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-us-section">
+  <div class="container">
+    <div class="title">
+      <h3>98 kmo's vertrouwen ons al</h3>
+      <h6>Als kmo-ondernemers weten we zelf dat de kwaliteit van een ERP wordt afgemeten aan de echte impact op uw bedrijf, niet aan het aantal functies.</h6>
+    </div>
+    <div class="logos-marquee">
+      <div class="companies-logos" id="logosTrack">
+        <div class="item"><img src="assets/img/Image-logo-proactivedrive.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image23.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image22.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image41.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image40.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image39.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image-logo-supersec.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image37.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image35.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image34.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image33.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image36.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image32.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image31.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image30.png" alt="" loading="lazy"></div>
+        <!-- duplicated set below for seamless marquee loop -->
+        <div class="item"><img src="assets/img/Image-logo-proactivedrive.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image23.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image22.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image41.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image40.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image39.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image-logo-supersec.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image37.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image35.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image34.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image33.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image36.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image32.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image31.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="assets/img/Image30.png" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="primary-btn">
+      <a class="btn btn-violet" href="#contact">Plan een gesprek</a>
+    </div>
+  </div>
+</section>
+
+<section class="onboarding-section">
+  <div class="container">
+    <div class="title">
+      <h3>Ons onboardingproces</h3>
+      <p>Van het eerste contact tot volle snelheid: een duidelijk traject in 5 stappen.</p>
+    </div>
+    <div class="onboarding-track">
+      <div class="onboarding-step">
+        <div class="num">01</div>
+        <h5>Kennismakingsgesprek</h5>
+        <p>We bespreken uw situatie, behoeften en doelstellingen.</p>
+      </div>
+      <div class="onboarding-step">
+        <div class="num">02</div>
+        <h5>Opdrachtbrief ondertekend</h5>
+        <p>We leggen onze samenwerking en de omvang van onze diensten vast.</p>
+      </div>
+      <div class="onboarding-step">
+        <div class="num">03</div>
+        <h5>Bepaling van een fiscale structuur</h5>
+        <p>Een optimalisatiemodel op maat van uw situatie, dat onze volledige begeleiding omkadert.</p>
+      </div>
+      <div class="onboarding-step">
+        <div class="num">04</div>
+        <h5>Opleiding Odoo-boekhouding</h5>
+        <p>We leiden u op in gegevensinvoer en het beheer van uw boekhouding in Odoo.</p>
+      </div>
+      <div class="onboarding-step">
+        <div class="num">05</div>
+        <h5>Lopende boekhouding</h5>
+        <p>Permanente opvolging, met periodieke controles van uw rekeningen en beheerscontrole.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="container-sm">
+    <div class="title">
+      <h3>Veelgestelde vragen</h3>
+      <p>Boekhouding, Odoo, van boekhoudkantoor veranderen: de antwoorden op de vragen die kmo-ondernemers echt stellen.</p>
+    </div>
+    <div class="faq-list">
+      {faqItems.map((item) => (
+        <details class="faq-item">
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="contact-hero" id="contact">
+  <div class="container">
+    <div class="contact-hero-intro">
+      <h2>Laten we praten over uw <span>boekhouding</span></h2>
+      <ul class="trust-list">
+        <li>98 bedrijven vertrouwen ons al</li>
+        <li>Odoo Silver Partner</li>
+        <li>ITAA-lid</li>
+      </ul>
+
+      <h5>Liever live praten?</h5>
+      <p>Geen verkooppraatjes: u spreekt rechtstreeks met een AgiFid-expert.</p>
+    </div>
+  </div>
+  <div class="container contact-hero-row">
+    <div class="calendly-embed-wrap">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+      <noscript>
+        <p class="calendly-fallback"><a href="https://calendly.com/sam-agitech/25-min-visio-meeting-clone" target="_blank" rel="noopener">Boek een tijdslot via Calendly</a></p>
+      </noscript>
+    </div>
+
+    <div class="contact-card">
+      <h3>Contacteer ons per e-mail</h3>
+      <form class="contact-form" action="https://formspree.io/f/moearzwo" method="POST">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Naam*</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-company">Bedrijf*</label>
+            <input type="text" id="cf-company" name="company" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-email">E-mail*</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-phone">Telefoon*</label>
+            <input type="tel" id="cf-phone" name="phone" required>
+          </div>
+        </div>
+        <div class="form-field form-field-full">
+          <label for="cf-message">Waarmee kunnen we u helpen? (optioneel)</label>
+          <textarea id="cf-message" name="message" rows="4"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Nieuwe contactaanvraag (NL) - AgiFid">
+        <input type="hidden" name="_next" value="merci-formulaire.html">
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-nl">
+        <button type="submit" class="btn btn-violet">Verzenden →</button>
+      </form>
+    </div>
+  </div>
+</section>
+</Layout>

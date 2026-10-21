@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  lang: 'fr' | 'en';
+  lang: 'fr' | 'en' | 'nl';
   /** 'home' = index.html / index-en.html. 'sub' = any other page (nav anchors point back to index.html). */
   pageType: 'home' | 'sub';
 }
@@ -25,9 +25,18 @@ const strings = {
     rights: '© 2026 AgiFid. All rights reserved.',
     privacy: 'Privacy Policy', terms: 'Terms and Conditions',
   },
+  nl: {
+    newsletter: 'Schrijf u in voor onze nieuwsbrief', emailPlaceholder: 'Uw e-mailadres',
+    newsletterSubject: 'Newsletter signup (NL) - AgiFid',
+    tagline: 'Boekhoudkantoor 100% gewijd aan bedrijven op Odoo',
+    why: 'Waarom wij', services: 'Diensten', contact: 'Contact', blog: 'Nieuws', about: 'Over ons', agitech: 'Agitech',
+    nav: 'Navigatie', whyAnchor: 'waarom',
+    rights: '© 2026 AgiFid. Alle rechten voorbehouden.',
+    privacy: 'Privacybeleid', terms: 'Algemene voorwaarden',
+  },
 }[lang];
 
-const base = pageType === 'home' ? '' : '/index.html';
+const base = pageType === 'home' ? '' : lang === 'nl' ? '/index-nl.html' : '/index.html';
 ---
 <div class="brand-bar"></div>
 <footer>
@@ -63,9 +72,9 @@ const base = pageType === 'home' ? '' : '/index.html';
             <li><a href={`${base}#${strings.whyAnchor}`}>{strings.why}</a></li>
             <li><a href={`${base}#services`}>{strings.services}</a></li>
             <li><a href={`${base}#contact`}>{strings.contact}</a></li>
-            <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>
+            {lang !== 'nl' && <li><a href={lang === 'en' ? '/actualites-en.html' : '/actualites.html'}>{strings.blog}</a></li>}
             {lang === 'fr' && <li><a href="/a-propos.html">{strings.about}</a></li>}
-            {lang === 'fr' && <li><a href="/carrieres.html">Carrières</a></li>}
+            {lang !== 'en' && <li><a href={lang === 'nl' ? '/carrieres-nl.html' : '/carrieres.html'}>Jobs</a></li>}
             <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
           </ul>
           <div class="social-icons">
