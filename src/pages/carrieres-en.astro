@@ -21,6 +21,7 @@ const jsonLd = {
   alternates={{ fr: "https://www.agifid.be/carrieres.html", en: "https://www.agifid.be/carrieres-en.html", nl: "https://www.agifid.be/carrieres-nl.html" }}
   ogLocale="en_GB"
   jsonLd={jsonLd}
+  includeContactScripts
 >
 <section class="about-section">
   <div class="container-sm">
@@ -61,9 +62,40 @@ const jsonLd = {
 
     <div class="about-cta">
       <a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">See all our open positions</a>
-      <a class="btn btn-outline" href="mailto:contact@agifid.be?subject=Unsolicited%20application">Unsolicited application</a>
+      <a class="btn btn-outline" href="#contact">Unsolicited application</a>
     </div>
-    <p class="career-mail">Or write to us directly: <a href="mailto:contact@agifid.be">contact@agifid.be</a></p>
+
+    <div class="about-block" id="contact">
+      <div class="contact-card">
+        <h3>Unsolicited application</h3>
+        <p class="career-intro">No position fits? Tell us who you are and we'll get back to you.</p>
+        <form class="contact-form" action="https://formspree.io/f/moearzwo" method="POST">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Name*</label>
+              <input type="text" id="cf-name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email*</label>
+              <input type="email" id="cf-email" name="email" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-phone">Phone</label>
+            <input type="tel" id="cf-phone" name="phone">
+          </div>
+          <div class="form-field form-field-full">
+            <label for="cf-message">Tell us about yourself (LinkedIn link, the role you are looking for...)*</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+          <input type="hidden" name="_subject" value="Unsolicited application (EN) - AgiFid">
+          <input type="hidden" name="_next" value="merci-formulaire.html">
+          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-jobs">
+          <button type="submit" class="btn btn-violet">Send →</button>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 </Layout>
