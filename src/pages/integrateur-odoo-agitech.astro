@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 
 const jsonLd = {
@@ -19,39 +19,72 @@ const jsonLd = {
   ogLocale="fr_BE"
   jsonLd={jsonLd}
 >
-<section class="about-section">
-  <div class="container-sm">
-    <div class="title">
-      <h6 class="eyebrow">Notre partenaire Odoo</h6>
-      <h1>Agitech, l'intégrateur Odoo qui travaille avec nous</h1>
-      <p>Une comptabilité fiable commence par un Odoo bien configuré. C'est le métier d'Agitech, intégrateur Odoo partenaire Silver en Belgique, avec qui nous partageons nos bureaux et collaborons au quotidien.</p>
-    </div>
-
-    <div class="about-block">
-      <h2>Une synergie forte, chacun son métier</h2>
-      <p>AgiFid et Agitech collaborent au quotidien, avec des bureaux partagés : les équipes se croisent, se parlent et règlent vos sujets ensemble.</p>
-      <ul class="about-list">
-        <li><strong><a href="https://agitech.io/">Agitech</a> gère votre ERP</strong> — implémentation, évolutions, développements sur mesure et support d'Odoo.</li>
-        <li><strong>AgiFid tient votre comptabilité au quotidien</strong> — directement dans votre Odoo, sans double encodage ni fichiers échangés.</li>
-        <li><strong>Plus de renvoi de responsabilité</strong> — l'intégrateur et la fiduciaire coordonnent leurs équipes, fini le ping-pong entre prestataire informatique et comptable.</li>
-        <li><strong>Un Odoo pensé pour la comptabilité</strong> — plan comptable, TVA, facturation électronique et clôtures paramétrés dès l'implémentation.</li>
-      </ul>
-    </div>
-
-    <div class="about-block">
-      <h2>Deux entités distinctes, une indépendance préservée</h2>
-      <p>Malgré cette collaboration étroite, AgiFid et Agitech sont deux sociétés distinctes, avec un actionnariat différent. AgiFid conserve l'indépendance propre au métier comptable : fiduciaire agréée et membre de l'ITAA, elle reste soumise à sa déontologie et à ses obligations professionnelles.</p>
-      <p>Vous bénéficiez ainsi de la proximité d'équipes coordonnées, avec le recul et l'indépendance qu'on attend d'un comptable.</p>
-    </div>
-
-    <div class="about-block">
-      <h2>Vous n'avez pas encore Odoo ?</h2>
-      <p>Si vous hésitez à passer à Odoo, ou si votre Odoo actuel ne vous convient plus, découvrez <a href="https://agitech.io/">l'offre Odoo ERP d'Agitech</a> : implémentation, migration, développement sur mesure et support.</p>
-    </div>
-
-    <div class="about-cta">
+<section class="home-banner page-hero">
+  <div class="container row">
+    <h6>Notre partenaire Odoo</h6>
+    <h1>Agitech, l'intégrateur Odoo qui travaille <span>avec nous</span></h1>
+    <p class="page-hero-lead">Une comptabilité fiable commence par un Odoo bien configuré. C'est le métier d'Agitech, intégrateur Odoo partenaire Silver en Belgique, avec qui nous partageons nos bureaux et collaborons au quotidien.</p>
+    <div class="page-hero-cta">
       <a class="btn btn-violet" href="/index.html#contact">Parler à un expert</a>
+      <a class="btn btn-ghost-light" href="https://agitech.io/" target="_blank" rel="noopener">Découvrir Agitech</a>
     </div>
+  </div>
+</section>
+<div class="brand-bar"></div>
+
+<section class="num-section">
+  <div class="container">
+    <div class="num-grid">
+      <div class="num-head">
+        <h6>01</h6>
+        <h2>Une synergie forte, chacun son métier</h2>
+      </div>
+      <div class="num-body">
+        <p>AgiFid et Agitech collaborent au quotidien, avec des bureaux partagés : les équipes se croisent, se parlent et règlent vos sujets ensemble.</p>
+        <ul>
+          <li><strong><a href="https://agitech.io/">Agitech</a> gère votre ERP</strong> — implémentation, évolutions, développements sur mesure et support d'Odoo.</li>
+          <li><strong>AgiFid tient votre comptabilité au quotidien</strong> — directement dans votre Odoo, sans double encodage ni fichiers échangés.</li>
+          <li><strong>Plus de renvoi de responsabilité</strong> — l'intégrateur et la fiduciaire coordonnent leurs équipes, fini le ping-pong entre prestataire informatique et comptable.</li>
+          <li><strong>Un Odoo pensé pour la comptabilité</strong> — plan comptable, TVA, facturation électronique et clôtures paramétrés dès l'implémentation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="num-section">
+  <div class="container">
+    <div class="num-grid">
+      <div class="num-head">
+        <h6>02</h6>
+        <h2>Deux entités distinctes, une indépendance préservée</h2>
+      </div>
+      <div class="num-body">
+        <p>Malgré cette collaboration étroite, AgiFid et Agitech sont deux sociétés distinctes, avec un actionnariat différent. AgiFid conserve l'indépendance propre au métier comptable : fiduciaire agréée et membre de l'ITAA, elle reste soumise à sa déontologie et à ses obligations professionnelles.</p>
+        <p>Vous bénéficiez ainsi de la proximité d'équipes coordonnées, avec le recul et l'indépendance qu'on attend d'un comptable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="num-section">
+  <div class="container">
+    <div class="num-grid">
+      <div class="num-head">
+        <h6>03</h6>
+        <h2>Vous n'avez pas encore Odoo ?</h2>
+      </div>
+      <div class="num-body">
+        <p>Si vous hésitez à passer à Odoo, ou si votre Odoo actuel ne vous convient plus, découvrez <a href="https://agitech.io/">l'offre Odoo ERP d'Agitech</a> : implémentation, migration, développement sur mesure et support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container-sm">
+    <h3>Parlons de votre projet</h3>
+    <a class="btn btn-violet" href="/index.html#contact">Parler à un expert</a>
   </div>
 </section>
 </Layout>

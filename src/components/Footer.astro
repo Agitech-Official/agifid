@@ -14,7 +14,7 @@ const strings = {
     why: 'Pourquoi nous', services: 'Services', contact: 'Contact', blog: 'Actualités', about: 'À propos', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'pourquoi',
     rights: '© 2026 AgiFid. Tous droits réservés.',
-    privacy: 'Politique de Confidentialité', terms: 'Termes et Conditions',
+    privacy: 'Politique de Confidentialité', terms: 'Termes et Conditions', manage: 'Gérer les cookies',
   },
   en: {
     newsletter: 'Subscribe to our newsletter', emailPlaceholder: 'Your email',
@@ -23,7 +23,7 @@ const strings = {
     why: 'Why us', services: 'Services', contact: 'Contact', blog: 'Insights', about: 'About', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'why',
     rights: '© 2026 AgiFid. All rights reserved.',
-    privacy: 'Privacy Policy', terms: 'Terms and Conditions',
+    privacy: 'Privacy Policy', terms: 'Terms and Conditions', manage: 'Manage cookies',
   },
   nl: {
     newsletter: 'Schrijf u in voor onze nieuwsbrief', emailPlaceholder: 'Uw e-mailadres',
@@ -32,7 +32,7 @@ const strings = {
     why: 'Waarom wij', services: 'Diensten', contact: 'Contact', blog: 'Nieuws', about: 'Over ons', agitech: 'Agitech',
     nav: 'Navigatie', whyAnchor: 'waarom',
     rights: '© 2026 AgiFid. Alle rechten voorbehouden.',
-    privacy: 'Privacybeleid', terms: 'Algemene voorwaarden',
+    privacy: 'Privacybeleid', terms: 'Algemene voorwaarden', manage: 'Cookies beheren',
   },
 }[lang];
 
@@ -87,7 +87,7 @@ const base = pageType === 'home' ? '' : { fr: '/index.html', en: '/index-en.html
     </div>
     <div class="copy-right">
       <p>{strings.rights}</p>
-      <p class="privacy-links"><a href="https://www.agicompta.be/fr_be/privacy-policy/">{strings.privacy}</a>&nbsp;|&nbsp;<a href="https://www.agicompta.be/fr_be/terms-conditions/">{strings.terms}</a></p>
+      <p class="privacy-links"><a href="https://www.agicompta.be/fr_be/privacy-policy/">{strings.privacy}</a>&nbsp;|&nbsp;<a href="https://www.agicompta.be/fr_be/terms-conditions/">{strings.terms}</a>&nbsp;|&nbsp;<a href="#" data-cookie-settings>{strings.manage}</a></p>
     </div>
   </div>
 </footer>

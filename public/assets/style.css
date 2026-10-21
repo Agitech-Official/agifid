@@ -399,6 +399,41 @@
   .career-perks .perk h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
   .career-perks .perk p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin: 0; }
   @media (max-width: 700px) { .career-perks { grid-template-columns: 1fr; } }
+  /* Inner page: dark hero + numbered text sections + closing banner (same layout as agitech.io content pages) */
+  .page-hero { padding: 5rem 0 6rem; }
+  .page-hero h1 { max-width: 760px; margin-bottom: 1.25rem; }
+  .page-hero-lead { color: var(--muted-onDark); max-width: 640px; line-height: 1.7; margin-bottom: 2rem; }
+  .page-hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn-ghost-light { border: 1.5px solid rgba(255,255,255,0.5); color: var(--white); }
+  .btn-ghost-light:hover { border-color: var(--violet-light); color: var(--violet-light); }
+  .num-section { padding: 4rem 0; border-top: 1px solid var(--border); }
+  .num-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
+  .num-head h6 { color: var(--violet); font-family: var(--font-body); font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.75rem; }
+  .num-head h2 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem); line-height: 1.2; margin: 0; }
+  .num-body p { color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .num-body p:first-child { font-size: 1.15rem; line-height: 1.6; color: var(--ink); }
+  .num-body a { color: var(--violet); font-weight: 600; }
+  .num-body ul { list-style: none; margin: 1.25rem 0 0; padding: 0; border-top: 1px solid var(--border); }
+  .num-body li { position: relative; padding: 0.85rem 0 0.85rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.98rem; color: var(--muted); line-height: 1.6; }
+  .num-body li::before { content: ''; position: absolute; left: 0; top: 1.4em; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); }
+  .num-body li strong { color: var(--ink); }
+  .cta-banner { padding: 4.5rem 0; text-align: center; background: var(--offwhite); }
+  .cta-banner h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin-bottom: 1.5rem; }
+  @media (max-width: 900px) { .num-grid { grid-template-columns: 1fr; gap: 1.5rem; } .num-section { padding: 2.75rem 0; } .page-hero { padding: 3.5rem 0 4rem; } }
+  /* Cookie consent bar (same behaviour as agitech.io, AgiFid green) */
+  .cookie-banner[hidden] { display: none; }
+  .cookie-banner { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 1000; max-width: 880px; margin: 0 auto; display: flex; gap: 1.25rem; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 1rem 1.25rem; background: #1d1d1d; border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); font-size: 0.9rem; line-height: 1.5; }
+  .cookie-banner p { margin: 0; flex: 1 1 320px; color: rgba(255,255,255,0.85); }
+  .cookie-banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+  .cookie-actions { display: flex; gap: 0.6rem; }
+  .cookie-actions button { cursor: pointer; border-radius: 100px; padding: 0.6rem 1.3rem; min-height: 44px; font-family: var(--font-display); font-size: 0.88rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.35); background: transparent; color: #fff; transition: background 0.2s; }
+  .cookie-actions button:hover { background: rgba(255,255,255,0.12); }
+  .cookie-actions button.cookie-accept { background: var(--violet); border-color: var(--violet); color: #1d1d1d; }
+  .cookie-actions button.cookie-accept:hover { background: var(--violet-light); }
+  @media (max-width: 560px) { .cookie-actions { width: 100%; } .cookie-actions button { flex: 1; } }
+  /* Agitech links: green accent (footer + in-text) */
+  .ft-links a[href*="agitech"], .num-body a[href*="agitech.io"] { color: var(--violet); }
+  .ft-links a[href*="agitech"]:hover, .num-body a[href*="agitech.io"]:hover { color: var(--violet-light); }
   .about-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
   @media (max-width: 560px) {
     .about-section { padding: 3.5rem 0; }
