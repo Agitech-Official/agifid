@@ -3,7 +3,7 @@ export interface Props {
   lang: 'fr' | 'en' | 'nl';
   /** 'home' = index.html / index-en.html (in-page anchors). 'sub' = any other page (anchors point back to index.html). */
   pageType: 'home' | 'sub';
-  /** Absolute URLs of this page in each language: shows the switcher on a sub-page. */
+  /** Absolute URLs of this page in each language; without it the switcher links to each language home. */
   langUrls?: Partial<Record<'fr' | 'en' | 'nl', string>>;
 }
 const { lang, pageType, langUrls } = Astro.props;
@@ -37,14 +37,12 @@ const logoHref = lang === 'nl' ? '/index-nl.html' : pageType === 'home' && lang 
         <li><a href={jobsHref}>Jobs</a></li>
         <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
       </ul>
-      {(pageType === 'home' || langUrls) && (
-        <div class="lang-flag" role="group" aria-label="Langue / Language / Taal">
-          {([['fr', 'FR', 'Français'], ['en', 'EN', 'English'], ['nl', 'NL', 'Nederlands']] as const).map(([code, label, name]) =>
-            code === lang
-              ? <span class="lang-opt active" aria-current="true" lang={code}>{label}</span>
-              : <a class="lang-opt" href={langUrls?.[code] ?? homeHref[code]} hreflang={code} lang={code} title={name}>{label}</a>)}
-        </div>
-      )}
+      <div class="lang-flag" role="group" aria-label="Langue / Language / Taal">
+        {([['fr', 'FR', 'Français'], ['en', 'EN', 'English'], ['nl', 'NL', 'Nederlands']] as const).map(([code, label, name]) =>
+          code === lang
+            ? <span class="lang-opt active" aria-current="true" lang={code}>{label}</span>
+            : <a class="lang-opt" href={langUrls?.[code] ?? homeHref[code]} hreflang={code} lang={code} title={name}>{label}</a>)}
+      </div>
       <div class="discuss-btn"><a href={`${base}#contact`}>{strings.discuss}</a></div>
     </nav>
     <div class="lines-button" id="burgerBtn"><span class="lines"></span></div>
