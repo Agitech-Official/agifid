@@ -4,11 +4,11 @@ import Layout from '../layouts/Layout.astro';
 const faqItems = [
   {
     question: 'Wat is AgiFid?',
-    answer: 'AgiFid is een erkend boekhoudkantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren. Het werkt nauw samen met Agitech, een gecertificeerde Odoo-integrator, voor een afgestemde begeleiding tussen boekhouding en beheertools.',
+    answer: 'AgiFid is een erkend accountantskantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren. Het werkt nauw samen met Agitech, een gecertificeerde Odoo-integrator, voor een afgestemde begeleiding tussen boekhouding en beheertools.',
   },
   {
     question: 'Hoeveel kost een boekhouder voor een kmo in België?',
-    answer: 'Reken op ongeveer €150 tot enkele honderden euro per maand, afhankelijk van de grootte van het bedrijf, het btw-stelsel en het aantal documenten. Bij AgiFid zijn de prijzen vast en transparant: €3.500 excl. btw/jaar voor een beheersvennootschap, €6.500 excl. btw/jaar voor 1 tot 5 VTE, en op aanvraag daarboven.',
+    answer: 'Reken op ongeveer €150 tot enkele honderden euro per maand, afhankelijk van de grootte van het bedrijf, het btw-stelsel en het aantal documenten. Bij AgiFid zijn de prijzen vast en transparant: €3.500 excl. btw/jaar voor een managementvennootschap, €6.500 excl. btw/jaar voor 1 tot 5 VTE, en op aanvraag daarboven.',
   },
   {
     question: 'Hoe kies ik een goede boekhouder in België?',
@@ -23,8 +23,8 @@ const faqItems = [
     answer: 'Ja, sinds 1 januari 2026 is elektronische facturatie in PEPPOL-formaat verplicht voor btw-plichtige ondernemingen in België. Odoo ondersteunt deze standaard rechtstreeks, wat de naleving vergemakkelijkt voor bedrijven die al op Odoo werken.',
   },
   {
-    question: 'Vervangt Odoo een boekhouder of boekhoudkantoor?',
-    answer: 'Nee. Odoo is een beheertool die facturatie, aankopen en boekhouding centraliseert, maar vervangt de wettelijke rol van de boekhouder niet. Het boekhoudkantoor blijft verantwoordelijk voor de fiscale naleving, de btw-aangiften en de goedkeuring van de jaarrekening — Odoo maakt dat werk eenvoudiger en betrouwbaarder, maar komt er niet in de plaats van.',
+    question: 'Vervangt Odoo een boekhouder of accountantskantoor?',
+    answer: 'Nee. Odoo is een beheertool die facturatie, aankopen en boekhouding centraliseert, maar vervangt de wettelijke rol van de boekhouder niet. Het accountantskantoor blijft verantwoordelijk voor de fiscale naleving, de btw-aangiften en de goedkeuring van de jaarrekening — Odoo maakt dat werk eenvoudiger en betrouwbaarder, maar komt er niet in de plaats van.',
   },
   {
     question: 'Wat is het verschil tussen een boekhouder en een erkend accountant in België?',
@@ -51,7 +51,7 @@ const faqItems = [
     answer: 'Een BV moet een dubbele boekhouding voeren, elk jaar de jaarrekening neerleggen bij de Nationale Bank van België en periodieke btw-aangiften indienen (maandelijks of driemaandelijks, afhankelijk van het stelsel). Ze moet ook de vennootschapsbelasting aangeven en betalen.',
   },
   {
-    question: 'Hoe lang duurt het om met een nieuw boekhoudkantoor te starten?',
+    question: 'Hoe lang duurt het om met een nieuw accountantskantoor te starten?',
     answer: 'Bij AgiFid verloopt de onboarding in 5 stappen: kennismakingsgesprek, ondertekening van de opdrachtbrief, bepaling van een fiscale structuur, opleiding in Odoo-boekhouding, en daarna de start van de boekhouding met periodieke opvolging. De duur hangt vooral af van de beschikbaarheid van de klant tijdens de opleidingsfase.',
   },
 ];
@@ -62,7 +62,7 @@ const jsonLd = [
     '@type': 'AccountingService',
     name: 'AgiFid',
     url: 'https://www.agifid.be/index-nl.html',
-    description: 'Erkend boekhoudkantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren.',
+    description: 'Erkend accountantskantoor (ITAA-lid), 100% gewijd aan bedrijven die hun boekhouding, fiscaliteit en beheer op Odoo uitvoeren.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '11 Clos Lucien Outers',
@@ -104,8 +104,8 @@ const jsonLd = [
   htmlLang="nl-BE"
   lang="nl"
   pageType="home"
-  title="AgiFid — Boekhoudkantoor 100% gewijd aan bedrijven op Odoo"
-  description="ITAA-erkend boekhoudkantoor 100% gewijd aan Odoo-bedrijven: boekhouding, fiscaliteit, loonadministratie en advies, samen met Agitech, gecertificeerde Odoo-integrator."
+  title="AgiFid — Accountantskantoor 100% gewijd aan bedrijven op Odoo"
+  description="ITAA-erkend accountantskantoor 100% gewijd aan Odoo-bedrijven: boekhouding, fiscaliteit, loonadministratie en advies, samen met Agitech, gecertificeerde Odoo-integrator."
   canonical="https://www.agifid.be/index-nl.html"
   altLangUrl="https://www.agifid.be/"
   ogLocale="nl_BE"
@@ -115,7 +115,7 @@ const jsonLd = [
 <section class="home-banner">
   <div class="container row">
     <h6>98 bedrijven vertrouwen ons al</h6>
-    <h1>Boekhoudkantoor <span>100% gewijd</span><br>aan bedrijven op Odoo</h1>
+    <h1>Accountantskantoor <span>100% gewijd</span><br>aan bedrijven op Odoo</h1>
     <a class="btn btn-light" href="#contact">Praat met een expert</a>
   </div>
 </section>
@@ -255,16 +255,16 @@ const jsonLd = [
     <div class="our-services-content">
       <div class="item">
         <a class="item-wrap" href="#contact">
-          <h4>Beheersvennootschap</h4>
+          <h4>Managementvennootschap</h4>
           <ul>
             <li>✓ Jaarrekening &amp; neerlegging bij de NBB</li>
             <li>✓ Periodieke btw-aangiften</li>
             <li>✓ Aangifte vennootschapsbelasting</li>
             <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
             <li>✓ 1u sessie over de bespreking van de jaarrekening</li>
-            <li>✓ 2u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ 2u fiscale optimalisatie &amp; bezoldiging van de bedrijfsleider</li>
             <li>✓ Loyaliteitsbonus voor modelklanten</li>
-            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✓ Opmaak van de loonfiche van de bedrijfsleider</li>
             <li>✗ Invoer van de loonfiches van uw werknemers</li>
             <li>✗ Beheerscontrole</li>
           </ul>
@@ -280,9 +280,9 @@ const jsonLd = [
             <li>✓ Aangifte vennootschapsbelasting</li>
             <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
             <li>✓ 2u sessie over de bespreking van de jaarrekening</li>
-            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bedrijfsleider</li>
             <li>✓ Loyaliteitsbonus voor modelklanten</li>
-            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✓ Opmaak van de loonfiche van de bedrijfsleider</li>
             <li>✓ Invoer van de loonfiches van uw werknemers</li>
             <li>✓ Beheerscontrole</li>
           </ul>
@@ -298,9 +298,9 @@ const jsonLd = [
             <li>✓ Aangifte vennootschapsbelasting</li>
             <li>✓ 1u Odoo-opleiding: gegevensinvoer &amp; boekhoudbeheer</li>
             <li>✓ 2u sessie over de bespreking van de jaarrekening</li>
-            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bestuurder</li>
+            <li>✓ 3u fiscale optimalisatie &amp; bezoldiging van de bedrijfsleider</li>
             <li>✓ Loyaliteitsbonus voor modelklanten</li>
-            <li>✓ Opmaak van de loonfiche van de bestuurder</li>
+            <li>✓ Opmaak van de loonfiche van de bedrijfsleider</li>
             <li>✓ Invoer van de loonfiches van uw werknemers</li>
             <li>✓ Beheerscontrole</li>
           </ul>
@@ -456,7 +456,7 @@ const jsonLd = [
   <div class="container-sm">
     <div class="title">
       <h3>Veelgestelde vragen</h3>
-      <p>Boekhouding, Odoo, van boekhoudkantoor veranderen: de antwoorden op de vragen die kmo-ondernemers echt stellen.</p>
+      <p>Boekhouding, Odoo, van accountantskantoor veranderen: de antwoorden op de vragen die kmo-ondernemers echt stellen.</p>
     </div>
     <div class="faq-list">
       {faqItems.map((item) => (
