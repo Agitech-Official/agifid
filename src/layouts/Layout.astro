@@ -16,6 +16,8 @@ export interface Props {
   /** Absolute URL of this exact page in the other language. Enables a precise 2-way
       hreflang pair. Omit on pages with no translated counterpart. */
   altLangUrl?: string;
+  /** Full set of translations of this page ({fr,en,nl} absolute URLs): 3-way hreflang + language switcher on a sub-page. */
+  alternates?: Partial<Record<'fr' | 'en' | 'nl', string>>;
   /** Calendly widget + reCAPTCHA v3 + the postMessage listener - only needed on pages with the contact form. */
   includeContactScripts?: boolean;
 }
@@ -23,7 +25,7 @@ export interface Props {
 const {
   htmlLang, lang, pageType, title, description,
   canonical, ogLocale, jsonLd, robotsNoIndex = false,
-  altLangUrl, includeContactScripts = false,
+  altLangUrl, alternates, includeContactScripts = false,
 } = Astro.props;
 
 const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 'fr';
@@ -60,6 +62,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="alternate" hreflang="en" href="https://www.agifid.be/index-en.html">
         <link rel="alternate" hreflang="nl" href="https://www.agifid.be/index-nl.html">
         <link rel="alternate" hreflang="x-default" href="https://www.agifid.be/">
+      </>
+    ) : alternates ? (
+      <>
+        {Object.entries(alternates).map(([code, href]) => <link rel="alternate" hreflang={code} href={href}>)}
+        <link rel="alternate" hreflang="x-default" href={alternates.fr ?? canonical}>
       </>
     ) : altLangUrl ? (
       <>
@@ -101,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<Header lang={lang} pageType={pageType} />
+<Header lang={lang} pageType={pageType} langUrls={alternates} />
 
 <slot />
 

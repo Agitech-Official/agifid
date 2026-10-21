@@ -74,7 +74,7 @@ const base = pageType === 'home' ? '' : lang === 'nl' ? '/index-nl.html' : '/ind
             <li><a href={`${base}#contact`}>{strings.contact}</a></li>
             <li><a href={{ fr: '/actualites.html', en: '/actualites-en.html', nl: '/actualites-nl.html' }[lang]}>{strings.blog}</a></li>
             {lang === 'fr' && <li><a href="/a-propos.html">{strings.about}</a></li>}
-            {lang !== 'en' && <li><a href={lang === 'nl' ? '/carrieres-nl.html' : '/carrieres.html'}>Jobs</a></li>}
+            <li><a href={{ fr: '/carrieres.html', en: '/carrieres-en.html', nl: '/carrieres-nl.html' }[lang]}>Jobs</a></li>
             <li><a href="https://agitech.io" target="_blank" rel="noopener">{strings.agitech}</a></li>
           </ul>
           <div class="social-icons">

@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const JOBS_URL = 'https://jobs.agifid.be';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Careers — AgiFid',
+  url: 'https://www.agifid.be/carrieres-en.html',
+  about: { '@type': 'Organization', name: 'AgiFid', url: 'https://www.agifid.be' },
+};
+---
+<Layout
+  htmlLang="en"
+  lang="en"
+  pageType="sub"
+  title="Careers — AgiFid"
+  description="Join AgiFid, an ITAA-certified accounting firm 100% on Odoo. Discover our open positions in Belgium."
+  canonical="https://www.agifid.be/carrieres-en.html"
+  alternates={{ fr: "https://www.agifid.be/carrieres.html", en: "https://www.agifid.be/carrieres-en.html", nl: "https://www.agifid.be/carrieres-nl.html" }}
+  ogLocale="en_GB"
+  jsonLd={jsonLd}
+>
+<section class="about-section">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Careers</h6>
+      <h1>AgiFid is hiring</h1>
+      <p>Join a high-performing, friendly team in an accounting firm that works directly in Odoo.</p>
+      <p class="about-cta"><a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">See all our open positions</a></p>
+    </div>
+
+    <img class="career-photo" src="/assets/img/bureau-agitech-agifid.jpg" alt="The team at work in our Auderghem offices" width="660" height="440" loading="lazy">
+
+    <div class="about-block">
+      <h2>Why AgiFid?</h2>
+      <ul class="about-list">
+        <li><strong>An accounting firm built for the future</strong> — you work in Odoo, with clients who run their business in real time.</li>
+        <li><strong>A solid framework</strong> — ITAA member: ongoing training, ethics and recognised expertise.</li>
+        <li><strong>Integrity as a standard</strong> — we only sell what the client needs, and we say no when it's better for them.</li>
+        <li><strong>Backed by Agitech</strong> — close collaboration with the certified Odoo integrator for frictionless client files.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>An office shared with Agitech</h2>
+      <p>AgiFid shares its Auderghem offices with Agitech, our certified Odoo integrator partner. In practice: your accountant colleagues and the Odoo business analysts work a few metres from each other, and a client file gets sorted over a coffee rather than through a chain of emails.</p>
+      <p>The two companies remain legally and operationally independent, but the office, the atmosphere and some joint projects are shared.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>What you'll find with us</h2>
+      <div class="career-perks">
+        <div class="perk"><h3>Odoo every day</h3><p>You work directly in our clients' ERP, with data that is always up to date.</p></div>
+        <div class="perk"><h3>Experts within reach</h3><p>ITAA accountants and Odoo specialists under one roof, so you learn fast.</p></div>
+        <div class="perk"><h3>SME clients</h3><p>Belgian business owners we talk to frankly, with no sales pitch.</p></div>
+        <div class="perk"><h3>A friendly team</h3><p>We work hard and laugh a lot, in our Auderghem offices.</p></div>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <a class="btn btn-violet" href={JOBS_URL} target="_blank" rel="noopener">See all our open positions</a>
+      <a class="btn btn-outline" href="mailto:contact@agifid.be?subject=Unsolicited%20application">Unsolicited application</a>
+    </div>
+    <p class="career-mail">Or write to us directly: <a href="mailto:contact@agifid.be">contact@agifid.be</a></p>
+  </div>
+</section>
+</Layout>

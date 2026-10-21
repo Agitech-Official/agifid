@@ -10,7 +10,7 @@ const SITE = 'https://www.agifid.be';
 const PAIRS: string[][] = [
   ['/', '/index-en.html', '/index-nl.html'],
   ['/actualites.html', '/actualites-en.html', '/actualites-nl.html'],
-  ['/carrieres.html', '/carrieres-nl.html'],
+  ['/carrieres.html', '/carrieres-en.html', '/carrieres-nl.html'],
 ];
 const SINGLES = ['/a-propos.html'];
 
