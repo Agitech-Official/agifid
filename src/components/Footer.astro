@@ -36,7 +36,7 @@ const strings = {
   },
 }[lang];
 
-const base = pageType === 'home' ? '' : lang === 'nl' ? '/index-nl.html' : '/index.html';
+const base = pageType === 'home' ? '' : { fr: '/index.html', en: '/index-en.html', nl: '/index-nl.html' }[lang];
 ---
 <div class="brand-bar"></div>
 <footer>

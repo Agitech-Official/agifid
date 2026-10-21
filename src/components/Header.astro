@@ -18,10 +18,9 @@ const homeHref = { fr: '/index.html', en: '/index-en.html', nl: '/index-nl.html'
 const blogHref = { fr: '/actualites.html', en: '/actualites-en.html', nl: '/actualites-nl.html' }[lang];
 const jobsHref = { fr: '/carrieres.html', en: '/carrieres-en.html', nl: '/carrieres-nl.html' }[lang];
 
-// On a sub-page (e.g. merci-formulaire.html) there is no per-language anchor target,
-// so nav links always point back to the French homepage's sections.
-const base = pageType === 'home' ? '' : lang === 'nl' ? '/index-nl.html' : '/index.html';
-const logoHref = lang === 'nl' ? '/index-nl.html' : pageType === 'home' && lang === 'en' ? '/index-en.html' : '/index.html';
+// On a sub-page, nav links point to the sections of the homepage in the page's own language.
+const base = pageType === 'home' ? '' : homeHref[lang];
+const logoHref = homeHref[lang];
 ---
 <header>
   <div class="container header-wrap">
