@@ -29,9 +29,9 @@ const {
 } = Astro.props;
 
 const consent = {
-  fr: { text: 'Nous utilisons des cookies de mesure d’audience et publicitaires pour améliorer le site et mesurer nos campagnes. Vous pouvez les accepter ou les refuser.', accept: 'Accepter', refuse: 'Refuser', more: 'Politique de confidentialité', manage: 'Gérer les cookies', privacy: 'https://www.agicompta.be/fr_be/privacy-policy/' },
-  en: { text: 'We use analytics and advertising cookies to improve the site and measure our campaigns. You can accept or refuse them.', accept: 'Accept', refuse: 'Refuse', more: 'Privacy policy', manage: 'Manage cookies', privacy: 'https://www.agicompta.be/fr_be/privacy-policy/' },
-  nl: { text: 'Wij gebruiken analytische en advertentiecookies om de site te verbeteren en onze campagnes te meten. U kunt ze aanvaarden of weigeren.', accept: 'Aanvaarden', refuse: 'Weigeren', more: 'Privacybeleid', manage: 'Cookies beheren', privacy: 'https://www.agicompta.be/fr_be/privacy-policy/' },
+  fr: { text: 'Nous utilisons des cookies de mesure d’audience et publicitaires pour améliorer le site et mesurer nos campagnes. Vous pouvez les accepter ou les refuser.', accept: 'Accepter', refuse: 'Refuser', more: 'Politique de confidentialité', manage: 'Gérer les cookies', privacy: '/politique-de-confidentialite.html#cookies' },
+  en: { text: 'We use analytics and advertising cookies to improve the site and measure our campaigns. You can accept or refuse them.', accept: 'Accept', refuse: 'Refuse', more: 'Privacy policy', manage: 'Manage cookies', privacy: '/privacy-policy-en.html#cookies' },
+  nl: { text: 'Wij gebruiken analytische en advertentiecookies om de site te verbeteren en onze campagnes te meten. U kunt ze aanvaarden of weigeren.', accept: 'Aanvaarden', refuse: 'Weigeren', more: 'Privacybeleid', manage: 'Cookies beheren', privacy: '/privacybeleid-nl.html#cookies' },
 }[lang];
 const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 'fr';
 ---
@@ -101,7 +101,7 @@ const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 
 <Footer lang={lang} pageType={pageType} />
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label={consent.manage} hidden>
-  <p>{consent.text} <a href={consent.privacy} target="_blank" rel="noopener">{consent.more}</a></p>
+  <p>{consent.text} <a href={consent.privacy}>{consent.more}</a></p>
   <div class="cookie-actions">
     <button type="button" class="cookie-refuse" data-consent="denied">{consent.refuse}</button>
     <button type="button" class="cookie-accept" data-consent="granted">{consent.accept}</button>

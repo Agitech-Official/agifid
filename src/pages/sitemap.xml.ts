@@ -11,6 +11,8 @@ const PAIRS: string[][] = [
   ['/', '/index-en.html', '/index-nl.html'],
   ['/actualites.html', '/actualites-en.html', '/actualites-nl.html'],
   ['/carrieres.html', '/carrieres-en.html', '/carrieres-nl.html'],
+  ['/politique-de-confidentialite.html', '/privacy-policy-en.html', '/privacybeleid-nl.html'],
+  ['/conditions-generales.html', '/terms-and-conditions-en.html', '/algemene-voorwaarden-nl.html'],
 ];
 const SINGLES = ['/a-propos.html', '/integrateur-odoo-agitech.html'];
 

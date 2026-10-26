@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Terms and Conditions — AgiFid',
+  url: 'https://www.agifid.be/terms-and-conditions-en.html',
+};
+---
+<Layout
+  htmlLang="en"
+  lang="en"
+  pageType="sub"
+  title="Terms and Conditions — AgiFid"
+  description="General terms and conditions of sale of AgiFid (MFINANCES SRL), a chartered accountancy firm and ITAA member: invoicing, payment, suspension, duration of the engagement."
+  canonical="https://www.agifid.be/terms-and-conditions-en.html"
+  alternates={{ fr: "https://www.agifid.be/conditions-generales.html", en: "https://www.agifid.be/terms-and-conditions-en.html", nl: "https://www.agifid.be/algemene-voorwaarden-nl.html" }}
+  ogLocale="en_GB"
+  jsonLd={jsonLd}
+>
+<section class="about-section legal-page">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Legal notice</h6>
+      <h1>Terms and Conditions</h1>
+      <p>Last updated: October 2026.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>Who are we?</h2>
+      <p>These general terms and conditions apply to engagements entrusted to <strong>MFINANCES SRL</strong>, trading as <strong>AgiFid</strong> ("the Firm"), a chartered accountancy firm (expert-comptable) that is a member of the Institute for Tax Advisors &amp; Accountants (ITAA, accreditation no. 50.624.805), company number BE 0827.635.870, whose registered office is at Clos Lucien Outers 11, 1160 Auderghem, Belgium.</p>
+      <p>They form an integral part of the engagement letter signed with the client ("the Client"). The specific terms (scope, fees, duration, frequency of work) are set out in the engagement letter, which prevails in the event of any contrary provision.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>General terms and conditions</h2>
+      <ol class="legal-list">
+        <li>As all services and work are performed on the basis of the documents and information provided by the Client (inventories, estimates of work in progress or any other item), the Client alone bears full responsibility for both their authenticity and their accuracy.</li>
+        <li>The Client declares that they are aware of the penalties provided for in the event of fraud, tax-related or otherwise.</li>
+        <li>The Client agrees that invoices may be sent to their usual email address; unless otherwise indicated, invoices are deemed to have been received. An invoice not disputed within 15 days is deemed to be accepted by the Client.</li>
+        <li>Invoices are payable in cash at the Firm's registered office; late-payment interest runs from the 30th day after the invoice date, all recovery costs being borne by the Client, unless otherwise stated in the engagement letter. Any invoice left unpaid within this period automatically generates a payment reminder, charged at the flat rate of €15.00 excl. VAT per reminder.</li>
+        <li>Non-payment of two invoices on their due date results, by operation of law and without prior notice, in the suspension of all the Firm's services to the Client. Services put on standby resume only once the account has been settled in full.</li>
+        <li>Consequences in the event of suspension of the engagement: NBB (National Bank of Belgium), risk of increased fees, automatic striking-off from the CBE (Crossroads Bank for Enterprises), civil penalty and judicial dissolution; tax return, risk of ex officio assessment, administrative or criminal penalties; VAT, risk of criminal fine, imprisonment, professional ban and closure of the business.</li>
+        <li>The mere fact of non-payment of an invoice on its due date automatically triggers, without any formal notice, contractual interest of 1% per month applied to the total outstanding amount (settlement is applied first to reminder costs and interest).</li>
+        <li>The courts of Walloon Brabant have sole jurisdiction and Belgian law alone applies in the event of a dispute.</li>
+      </ol>
+    </div>
+
+    <div class="about-block">
+      <h2>Specific conditions for the engagement to present the annual accounts</h2>
+      <h3>A. Scope of application</h3>
+      <p>These conditions apply to agreements relating to engagements to present the annual accounts and to prepare the related tax returns, entered into between a member of the Institute for Tax Advisors &amp; Accountants and their client. They supplement the general terms and conditions set out above. These engagements are governed by the general and specific standards of the Institute.</p>
+      <h3>B. Definition of the engagement</h3>
+      <p>The presentation engagement is intended to enable the member of the Institute to certify, barring particular difficulties, that they have found nothing calling into question the formal regularity of the accounting records or the consistency and plausibility of the annual accounts, taking into account the documents and information provided by the company. It leads to the issuing of a certificate forming part of the summary documents delivered to the client. It is neither an audit nor a review of the annual accounts; its objective is not the systematic detection of fraud and misappropriation. It is based on:</p>
+      <ul class="about-list">
+        <li>a general understanding of the company;</li>
+        <li>checking the formal regularity of the accounting records;</li>
+        <li>sample checks of supporting documents;</li>
+        <li>a critical review of the consistency and plausibility of the annual accounts.</li>
+      </ul>
+      <h3>C. Duration of the engagement</h3>
+      <p>Engagements are entrusted for a minimum period of 1 year, renewable by tacit renewal, unless terminated by registered letter with acknowledgement of receipt, or by extrajudicial document, subject to 3 months' notice before the financial year-end date. In the event of a material breach by the other party of its obligations, either party may terminate the engagement without notice.</p>
+      <p>Barring serious misconduct by the member of the Institute, the client may interrupt the ongoing engagement only after having given notice by registered letter with acknowledgement of receipt one month before the date of cessation, and subject to payment of compensation of 6 months of flat fees (if a flat fee applies) or 50% of the fees of the last 12 months. In the event of suspension due to force majeure, the deadlines for delivery of the work are extended by a period equal to that of the suspension; articles 2, 3 and 4 of the general terms and conditions remain applicable.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>Personal data</h2>
+      <p>The processing of personal data is described in our <a href="/privacy-policy-en.html">privacy policy</a>.</p>
+    </div>
+  </div>
+</section>
+</Layout>

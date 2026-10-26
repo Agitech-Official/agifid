@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Privacy Policy — AgiFid',
+  url: 'https://www.agifid.be/privacy-policy-en.html',
+};
+---
+<Layout
+  htmlLang="en"
+  lang="en"
+  pageType="sub"
+  title="Privacy Policy — AgiFid"
+  description="AgiFid (MFINANCES SRL) privacy policy: data collected, purposes, retention periods, cookies and your rights under the GDPR."
+  canonical="https://www.agifid.be/privacy-policy-en.html"
+  alternates={{ fr: "https://www.agifid.be/politique-de-confidentialite.html", en: "https://www.agifid.be/privacy-policy-en.html", nl: "https://www.agifid.be/privacybeleid-nl.html" }}
+  ogLocale="en_GB"
+  jsonLd={jsonLd}
+>
+<section class="about-section legal-page">
+  <div class="container-sm">
+    <div class="title">
+      <h6 class="eyebrow">Legal notice</h6>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: October 2026.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>I. Data controller</h2>
+      <p>This policy is issued by <strong>MFINANCES SRL</strong>, trading as <strong>AgiFid</strong> (hereinafter "AgiFid", "we", "our"), a chartered accountancy firm (expert-comptable) that is a member of the Institute for Tax Advisors &amp; Accountants (ITAA, accreditation no. 50.624.805), registered under company number BE 0827.635.870, whose registered office is at Clos Lucien Outers 11, 1160 Auderghem, Belgium.</p>
+      <p>AgiFid works with Agile Technologies SRL ("Agitech"), an Odoo integrator, under an association described in our engagement letters. The two companies remain legally distinct.</p>
+      <p>We process personal data relating to our clients, visitors to this website, prospects and job applicants. This policy explains how we collect, use and retain it. It complies with Regulation (EU) 2016/679 of 27 April 2016 ("GDPR") and the Belgian Act of 30 July 2018 on the protection of natural persons with regard to the processing of personal data. Unless otherwise stated, AgiFid is the data controller within the meaning of the GDPR.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>II. What data do we collect, and how?</h2>
+      <h3>A. Data you provide to us</h3>
+      <ul class="about-list">
+        <li><strong>Forms and appointment booking</strong> (contact form, appointment booking, newsletter): name, company, email address, telephone number and the content of your message.</li>
+        <li><strong>Job applications</strong>: the information you choose to send us (identity, contact details, background, desired profile).</li>
+        <li><strong>Clients</strong>: the identification, accounting, tax and social data needed to carry out the engagement described in the engagement letter.</li>
+      </ul>
+      <h3>B. Data collected automatically</h3>
+      <ul class="about-list">
+        <li>IP address, browser type, device used, language, pages viewed and length of visit.</li>
+        <li>This data is collected through cookies and similar technologies, only after you have given your consent for audience-measurement and advertising cookies (see section IV).</li>
+      </ul>
+      <h3>C. Sensitive data</h3>
+      <p>We do not collect sensitive data (health, political opinions, religious beliefs, sexual orientation, etc.) through this website. Please do not include it in your messages.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>III. Purposes and legal bases</h2>
+      <ul class="about-list">
+        <li><strong>Responding to your requests and offering you our services</strong> — pre-contractual measures and legitimate interest.</li>
+        <li><strong>Carrying out the engagement and managing the client relationship</strong> (accounting, tax, invoicing) — performance of the contract.</li>
+        <li><strong>Complying with our legal obligations</strong> (accounting and tax obligations, prevention of money laundering and terrorist financing, retention of documents) — legal obligation.</li>
+        <li><strong>Sending our newsletter</strong> — your consent, which you may withdraw at any time.</li>
+        <li><strong>Measuring website audience and our advertising campaigns</strong> — your consent, via the cookie banner.</li>
+        <li><strong>Processing job applications</strong> — pre-contractual measures and your consent.</li>
+      </ul>
+      <p>You may withdraw your consent at any time, using the "unsubscribe" link in our emails or by writing to us at the address given in section IX.</p>
+    </div>
+
+    <div class="about-block" id="cookies">
+      <h2>IV. Cookies and similar technologies</h2>
+      <p>On your first visit, a banner allows you to <strong>accept or refuse</strong> audience-measurement and advertising cookies. Until you have accepted, no measurement tool is loaded. If you refuse, these tools are not loaded and the corresponding cookies already present on your device are deleted.</p>
+      <p>If you accept, we load Google Tag Manager and Google Analytics 4 (<code>_ga</code> and <code>_ga_*</code> cookies), as well as Google Ads advertising measurement tags (<code>_gcl_au</code> cookie), via Google Tag Manager. These cookies are kept for a maximum of two years.</p>
+      <p>When you use the contact form or the appointment booking, we also load Google reCAPTCHA (spam protection) and Calendly (scheduling). These services may set their own cookies, which are necessary for them to function.</p>
+      <p>You can change your choice at any time using the "Manage cookies" link at the bottom of each page.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>V. Recipients of your data</h2>
+      <p>Your data is covered by the professional secrecy of the chartered accountant (expert-comptable). We only share it with:</p>
+      <ul class="about-list">
+        <li>Our <strong>processors</strong>, bound by contract: website hosting (Vercel), form processing (Formspree), appointment booking (Calendly), Google tools (Tag Manager, Analytics, Ads, reCAPTCHA) and the Odoo accounting platform.</li>
+        <li><strong>Agitech</strong>, which develops, configures and maintains the Odoo environment in which our clients' accounts are kept.</li>
+        <li><strong>Related companies</strong> that assist us (administrative support and telephone secretarial services), in accordance with our procedures and under our responsibility.</li>
+        <li>The <strong>competent authorities</strong>, where required by law.</li>
+      </ul>
+      <p>All persons involved in a file are bound by professional secrecy and by confidentiality and processing agreements.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>VI. Transfers outside the European Union</h2>
+      <p>Some of our service providers (Google tools, Calendly, Formspree, Vercel) or related companies may process data outside the European Economic Area, notably in the United States and Morocco. In that case, we ensure that the transfer is based on an adequacy decision of the European Commission or on appropriate safeguards, such as standard contractual clauses and supplementary technical measures.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>VII. Retention period</h2>
+      <ul class="about-list">
+        <li><strong>Enquiries and prospects</strong>: 3 years after the last contact.</li>
+        <li><strong>Newsletter</strong>: until you unsubscribe.</li>
+        <li><strong>Clients</strong>: for the duration of the engagement, then 10 years after it ends, because of legal accounting, tax and anti-money-laundering obligations.</li>
+        <li><strong>Measurement cookies</strong>: two years at most, or until you withdraw your consent.</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h2>VIII. Your rights</h2>
+      <ul class="about-list">
+        <li><strong>Access</strong>: obtain a copy of your data.</li>
+        <li><strong>Rectification</strong>: correct your information.</li>
+        <li><strong>Erasure</strong>: request deletion in the cases provided for by law.</li>
+        <li><strong>Portability</strong>: receive your data or have it transmitted to a third party.</li>
+        <li><strong>Restriction</strong>: request the temporary blocking of a processing operation.</li>
+        <li><strong>Objection</strong>: object to processing based on legitimate interest, in particular for direct marketing purposes.</li>
+        <li><strong>Automated decision-making</strong>: not to be subject to a decision based solely on automated processing.</li>
+      </ul>
+      <p>Some rights may be limited by our legal obligations, for example the mandatory retention of accounting documents.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>IX. How to exercise your rights</h2>
+      <p>Write to us at <a href="mailto:contact@agifid.be">contact@agifid.be</a>, enclosing proof of identity. We reply within one month, extended to two months for a complex request.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>X. Security</h2>
+      <p>We implement appropriate technical and organisational measures to protect your data against loss, misuse, unauthorised access or disclosure.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>XI. Contact, applicable law and amendments</h2>
+      <ul class="about-list">
+        <li><strong>Controller</strong>: MFINANCES SRL (AgiFid), Clos Lucien Outers 11, 1160 Auderghem, Belgium.</li>
+        <li><strong>Email</strong>: <a href="mailto:contact@agifid.be">contact@agifid.be</a></li>
+        <li><strong>Applicable law</strong>: Belgian law.</li>
+      </ul>
+      <p>We may update this policy. The version in force is the one published on this page, with its update date.</p>
+    </div>
+
+    <div class="about-block">
+      <h2>XII. Complaints</h2>
+      <p>You may lodge a complaint with the Data Protection Authority (APD/GBA):</p>
+      <p><strong>Data Protection Authority (APD/GBA)</strong><br>Rue de la Presse 35, 1000 Brussels<br>Tel. +32 2 274 48 00<br><a href="mailto:contact@apd-gba.be">contact@apd-gba.be</a><br><a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">www.autoriteprotectiondonnees.be</a></p>
+    </div>
+  </div>
+</section>
+</Layout>

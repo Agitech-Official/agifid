@@ -434,6 +434,12 @@
   /* Agitech links: green accent (footer + in-text) */
   .ft-links a[href*="agitech"], .num-body a[href*="agitech.io"] { color: var(--violet); }
   .ft-links a[href*="agitech"]:hover, .num-body a[href*="agitech.io"]:hover { color: var(--violet-light); }
+  /* Legal pages */
+  .legal-page .about-block h3 { font-size: 1.05rem; margin: 1.5rem 0 0.6rem; }
+  .legal-page .about-block a { color: var(--violet); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .legal-page code { font-size: 0.9em; background: var(--offwhite); padding: 0.1em 0.35em; border-radius: 4px; }
+  .legal-list { list-style: decimal; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .legal-list li { color: var(--muted); line-height: 1.7; padding-left: 0.4rem; }
   .about-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
   @media (max-width: 560px) {
     .about-section { padding: 3.5rem 0; }

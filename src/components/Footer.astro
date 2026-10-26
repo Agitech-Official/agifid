@@ -14,7 +14,7 @@ const strings = {
     why: 'Pourquoi nous', services: 'Services', contact: 'Contact', blog: 'Actualités', about: 'À propos', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'pourquoi',
     rights: '© 2026 AgiFid. Tous droits réservés.',
-    privacy: 'Politique de Confidentialité', terms: 'Termes et Conditions', manage: 'Gérer les cookies',
+    privacy: 'Politique de Confidentialité', terms: 'Conditions générales', manage: 'Gérer les cookies',
   },
   en: {
     newsletter: 'Subscribe to our newsletter', emailPlaceholder: 'Your email',
@@ -23,7 +23,7 @@ const strings = {
     why: 'Why us', services: 'Services', contact: 'Contact', blog: 'Insights', about: 'About', agitech: 'Agitech',
     nav: 'Navigation', whyAnchor: 'why',
     rights: '© 2026 AgiFid. All rights reserved.',
-    privacy: 'Privacy Policy', terms: 'Terms and Conditions', manage: 'Manage cookies',
+    privacy: 'Privacy Policy', terms: 'General Terms', manage: 'Manage cookies',
   },
   nl: {
     newsletter: 'Schrijf u in voor onze nieuwsbrief', emailPlaceholder: 'Uw e-mailadres',
@@ -34,6 +34,12 @@ const strings = {
     rights: '© 2026 AgiFid. Alle rechten voorbehouden.',
     privacy: 'Privacybeleid', terms: 'Algemene voorwaarden', manage: 'Cookies beheren',
   },
+}[lang];
+
+const legal = {
+  fr: { privacy: '/politique-de-confidentialite.html', terms: '/conditions-generales.html' },
+  en: { privacy: '/privacy-policy-en.html', terms: '/terms-and-conditions-en.html' },
+  nl: { privacy: '/privacybeleid-nl.html', terms: '/algemene-voorwaarden-nl.html' },
 }[lang];
 
 const base = pageType === 'home' ? '' : { fr: '/index.html', en: '/index-en.html', nl: '/index-nl.html' }[lang];
@@ -87,7 +93,7 @@ const base = pageType === 'home' ? '' : { fr: '/index.html', en: '/index-en.html
     </div>
     <div class="copy-right">
       <p>{strings.rights}</p>
-      <p class="privacy-links"><a href="https://www.agicompta.be/fr_be/privacy-policy/">{strings.privacy}</a>&nbsp;|&nbsp;<a href="https://www.agicompta.be/fr_be/terms-conditions/">{strings.terms}</a>&nbsp;|&nbsp;<a href="#" data-cookie-settings>{strings.manage}</a></p>
+      <p class="privacy-links"><a href={legal.privacy}>{strings.privacy}</a>&nbsp;|&nbsp;<a href={legal.terms}>{strings.terms}</a>&nbsp;|&nbsp;<a href="#" data-cookie-settings>{strings.manage}</a></p>
     </div>
   </div>
 </footer>
