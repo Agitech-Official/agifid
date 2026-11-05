@@ -228,7 +228,7 @@
   .union-node .name img { width: 100px; height: auto; margin: 0 auto; }
   .union-node .role { color: var(--muted); font-size: 0.88rem; margin-top: 0.35rem; }
   .union-plus { font-family: var(--font-display); font-size: 1.8rem; color: var(--violet); font-weight: 600; }
-  .union-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .union-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .union-grid .card { padding: 1.75rem; border: 1px solid var(--border); border-radius: 14px; }
   .union-grid .card h5 { font-size: 1rem; margin-bottom: 0.5rem; }
   .union-grid .card p { font-size: 0.85rem; color: var(--muted); }
