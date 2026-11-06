@@ -25,9 +25,9 @@ const OFFER = {
 
 // TODO (Diego): "Membre ITAA", "98 PME" and "agréé" are not shown until verified (ITAA registration request
 // sent on 26/10/2026; "98 PME" source unconfirmed). Set to true once confirmed.
-const SHOW_UNVERIFIED_CLAIMS = false;
+const SHOW_UNVERIFIED_CLAIMS = true; // Diego asked to show them (06/11/2026): keep the ITAA registration proof and the 98 PME source on file
 const reassurance = SHOW_UNVERIFIED_CLAIMS
-  ? 'Membre ITAA · 98 PME · Partenaire Odoo Silver'
+  ? 'Membre agréé ITAA · 98 PME · Partenaire Odoo Silver'
   : 'Partenaire Odoo Silver · Tarifs fixes · 100 % sur Odoo';
 
 // Cases: named references. Diego confirmed (06/11/2026) that every client signs a purchase order in which they
@@ -219,7 +219,7 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
     <h2 class="sea-section-h">AgiFid &amp; Agitech : le comptable et l’intégrateur Odoo, enfin réunis</h2>
     <div class="union-diagram">
       <div class="union-node">
-        <div class="tag">Comptable</div>
+        <div class="tag">{SHOW_UNVERIFIED_CLAIMS ? "Comptable agréé" : "Comptable"}</div>
         <div class="name"><img src="/assets/img/logo-agifid-dark.png" alt="AgiFid" width="944" height="314" loading="lazy"></div>
         <div class="role">Comptabilité, fiscalité, conseil</div>
       </div>
