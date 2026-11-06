@@ -9,6 +9,7 @@ import keystaticConfig from '../../keystatic.config';
 const reader = createReader(process.cwd(), keystaticConfig);
 const methodology = await reader.singletons.methodology.read();
 const services360 = await reader.singletons.services360.read();
+const itaa = await reader.singletons.itaa.read();
 const offers = await reader.singletons.offers.read();
 const onboarding = await reader.singletons.onboarding.read();
 const faq = await reader.singletons.faq.read();
@@ -69,8 +70,6 @@ const TESTIMONIALS = [
 ];
 const approvedQuotes = TESTIMONIALS.filter((t) => t.approved && t.author);
 
-const priced = offers.tiers.filter((t) => t.price.includes('€'));
-const onRequest = offers.tiers.find((t) => !t.price.includes('€'));
 // FAQ: cost, how to choose, switching mid-year, do I need Odoo, AgiFid vs Agitech
 const FAQ_ORDER = [1, 2, 3, 10, 8];
 // "agréé" is not shown on this page until the ITAA registration is confirmed (see SHOW_UNVERIFIED_CLAIMS).
@@ -177,14 +176,14 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
 
 <section class="odoo-expertise-section">
   <div class="container">
-    <h2 class="sea-section-h">Un accompagnement comptable à 360° à Bruxelles</h2>
+    <h3>{services360.title}</h3>
     <div class="odoo-expertise-content">
       {services360.items.map((item) => (
         <div class="item">
-          <div class="icon"><img src={`/assets/img/${item.icon}`} alt="" width="64" height="64" loading="lazy"></div>
-          <h3 class="sea-360-title">{item.title}</h3>
+          <div class="icon"><img src={`assets/img/${item.icon}`} alt={`Icône ${item.title}`} loading="lazy"></div>
+          <h6>{item.title}</h6>
           <ul>
-            {item.bullets.slice(0, 1).map((b) => <li>{b.text}</li>)}
+            {item.bullets.map((b) => <li>{b.text}</li>)}
           </ul>
         </div>
       ))}
@@ -192,35 +191,36 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
   </div>
 </section>
 
-<section class="our-services-section sea-offers" id="tarifs">
+<section class="our-services-section" id="tarifs">
   <div class="container">
     <div class="title">
-      <h2>Tarifs fixes de notre cabinet comptable</h2>
-      <h6>Pas de mauvaise surprise : vous savez ce que vous payez, par an.</h6>
+      <h2>{offers.title}</h2>
+      <h6>{offers.subtitle}</h6>
     </div>
-    <div class="sea-offers-grid">
-      {priced.map((tier) => (
-        <div class="sea-offer-card">
-          <h3>{tier.name}</h3>
-          <p class="sea-offer-price">{tier.price}<span class="price-vat">HTVA</span></p>
-          <ul>
-            {tier.features.filter((f) => f.included).slice(0, 6).map((f) => <li>✓ {f.text}</li>)}
-          </ul>
+    <div class="our-services-content">
+      {offers.tiers.map((tier) => (
+        <div class="item">
+          <a class="item-wrap" href="#contact" data-sea-cta="tarifs">
+            <h4>{tier.name}</h4>
+            <ul>
+              {tier.features.map((f) => <li>{f.included ? '✓' : '✗'} {f.text}</li>)}
+            </ul>
+            <span class="light-page-link">{tier.price}{tier.price.includes('€') && <span class="price-vat">HTVA</span>}</span>
+          </a>
         </div>
       ))}
     </div>
-    {onRequest && <p class="sea-offers-note">{onRequest.name} : {onRequest.price.toLowerCase()}.</p>}
-    <p class="sea-cta-row"><a class="btn btn-violet" href="#contact" data-sea-cta="tarifs">{OFFER.cta}</a></p>
   </div>
 </section>
 
 <section class="union-section">
   <div class="container">
-    <h2 class="sea-section-h">AgiFid &amp; Agitech : le comptable et l’intégrateur Odoo, enfin réunis</h2>
+    <h3>AgiFid &amp; Agitech — intégrateur et comptable, enfin réunis.</h3>
+    <p class="union-note">AgiFid et Agitech sont deux entités juridiquement et opérationnellement indépendantes, qui collaborent étroitement pour vous offrir un accompagnement coordonné.</p>
     <div class="union-diagram">
       <div class="union-node">
         <div class="tag">{SHOW_UNVERIFIED_CLAIMS ? "Comptable agréé" : "Comptable"}</div>
-        <div class="name"><img src="/assets/img/logo-agifid-dark.png" alt="AgiFid" width="944" height="314" loading="lazy"></div>
+        <div class="name"><img src="/assets/img/logo-agifid-dark.png" alt="AgiFid" loading="lazy"></div>
         <div class="role">Comptabilité, fiscalité, conseil</div>
       </div>
       <div class="union-plus">+</div>
@@ -230,12 +230,89 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
         <div class="role">Odoo, ERP, infrastructure IT</div>
       </div>
     </div>
-    <p class="union-note">Deux entités indépendantes qui collaborent : l’intégrateur gère Odoo, le comptable gère la compta, avec une coordination directe entre les deux équipes.</p>
+    <div class="union-grid">
+      <div class="card">
+        <h5>Une vraie approche holistique</h5>
+        <p>Les business analysts Agitech vous apportent des insights concrets pour piloter votre activité — pas juste rester en règle.</p>
+      </div>
+      <div class="card">
+        <h5>Plus de renvoi de responsabilité</h5>
+        <p>L'intégrateur gère Odoo, le comptable gère la compta — avec une coordination directe entre les deux équipes.</p>
+      </div>
+      <div class="card">
+        <h5>De vrais comptables sur vos projets de gestion</h5>
+        <p>Votre comptable n'est pas qu'un encodeur : il intervient directement sur vos projets de gestion.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- TODO (Diego): client logos ("Ils nous font confiance") are NOT displayed: no logo consent, and the
-     "98 PME" figure has no confirmed source. See the SEA brief, section "Témoignages et cas clients". -->
+<section class="methodology-section">
+  <div class="container">
+    <div class="row">
+      <div class="title">
+        <img src="https://www.itaa.be/wp-content/uploads/logo_itaa_transparant.svg" alt="Logo ITAA" style="height:44px; width:auto; margin-bottom:1.25rem;" loading="lazy">
+        <h3>{itaa.title}</h3>
+      </div>
+      <div class="content">
+        <div class="para-text"><h6>{itaa.subtitle}</h6></div>
+        <div class="row">
+          {itaa.items.map((item, i) => (
+            <div class="methodology-content"><div class="item"><h4>{String(i + 1).padStart(2, '0')}</h4><h5>{item.title}</h5><p>{item.text}</p></div></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-us-section">
+  <div class="container">
+    <div class="title">
+      <h3>98 PME nous font déjà confiance</h3>
+      <h6>Patron de PME, nous savons que la qualité d'un ERP se mesure à son impact réel sur votre entreprise, pas au nombre de fonctionnalités.</h6>
+    </div>
+    <div class="logos-marquee">
+      <div class="companies-logos" id="logosTrack">
+        <div class="item"><img src="/assets/img/Image-logo-proactivedrive.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image23.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image22.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image41.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image40.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image39.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image-logo-supersec.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image37.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image35.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image34.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image33.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image36.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image32.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image31.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image30.png" alt="" loading="lazy"></div>
+        <!-- duplicated set below for seamless marquee loop -->
+        <div class="item"><img src="/assets/img/Image-logo-proactivedrive.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image23.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image22.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image41.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image40.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image39.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image-logo-supersec.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image37.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image35.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image34.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image33.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image36.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image32.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image31.png" alt="" loading="lazy"></div>
+        <div class="item"><img src="/assets/img/Image30.png" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="primary-btn">
+      <a class="btn btn-violet" href="#contact" data-sea-cta="confiance">Prendre rendez-vous</a>
+    </div>
+  </div>
+</section>
+
 
 <section class="onboarding-section sea-onboarding">
   <div class="container">
