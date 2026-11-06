@@ -1,30 +1,73 @@
 ---
 // Landing page for Google Ads ("comptable Bruxelles"). NOT indexed: noindex + not in sitemap +
 // no internal link to it. Do not block it in robots.txt (AdsBot must be able to crawl it).
-// Content is reused from the Keystatic singletons used by the home page: nothing invented here.
+// Content is reused from the Keystatic singletons / collections used by the home page.
 import Layout from '../layouts/Layout.astro';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../keystatic.config';
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const methodology = await reader.singletons.methodology.read();
+const services360 = await reader.singletons.services360.read();
 const offers = await reader.singletons.offers.read();
 const onboarding = await reader.singletons.onboarding.read();
 const faq = await reader.singletons.faq.read();
+const experts = (await reader.collections.experts.all())
+  .map((e) => e.entry)
+  .sort((a, b) => a.order - b.order);
 
 // TODO (Diego): confirm the offer. A concrete deliverable should replace the generic "rendez-vous",
 // e.g. a diagnostic of the Odoo accounting with 3 quantified time savings (NOT confirmed, do not publish as is).
 const OFFER = {
-  subtitle: "AgiFid est un cabinet comptable à Bruxelles : votre comptable travaille directement dans votre Odoo, avec des tarifs fixes et transparents.",
+  subtitle: 'Votre comptable à Bruxelles travaille directement dans votre Odoo.',
   cta: 'Prendre rendez-vous',
 };
 
-// TODO (Diego): "Membre ITAA" and "98 PME" are not shown until verified (ITAA registration request sent
-// on 26/10/2026; "98 PME" source unconfirmed). Set to true once confirmed.
+// TODO (Diego): "Membre ITAA", "98 PME" and "agréé" are not shown until verified (ITAA registration request
+// sent on 26/10/2026; "98 PME" source unconfirmed). Set to true once confirmed.
 const SHOW_UNVERIFIED_CLAIMS = false;
 const reassurance = SHOW_UNVERIFIED_CLAIMS
   ? 'Membre ITAA · 98 PME · Partenaire Odoo Silver'
-  : 'Partenaire Odoo Silver · Tarifs fixes et transparents · 100 % sur Odoo';
+  : 'Partenaire Odoo Silver · Tarifs fixes · 100 % sur Odoo';
+
+// Cases: named references. Diego confirmed (06/11/2026) that every client signs a purchase order in which they
+// specifically agree to be cited. TODO: keep the signed orders on file and check the clause covers a public
+// reference on a website. Facts only (what was done and what the client reported to AgiFid). No figures that the
+// client has not confirmed (e.g. the number of consolidated companies at MAJA). No quotation marks: the "feedback"
+// lines are reported speech, not client quotes.
+const CASES = [
+  {
+    name: 'MAJA',
+    tag: 'Groupe de sociétés',
+    title: 'Plusieurs sociétés, un seul reporting consolidé',
+    text: 'Reprise des dossiers comptables et mise en place d’Odoo avec consolidation multi-sociétés. La preuve de concept est finalisée : un reporting consolidé de tout le groupe, directement connecté à Odoo.',
+    feedback: 'Le groupe se dit très satisfait du résultat.',
+  },
+  {
+    name: 'LDK Consulting',
+    tag: 'Société de management',
+    title: 'Un schéma fiscal sur mesure, des chiffres que l’on comprend',
+    text: 'Élaboration d’un schéma fiscal adapté à la situation du dirigeant, chiffres accessibles en continu dans Odoo et situations intermédiaires régulières avec l’équipe.',
+    feedback: 'Le dirigeant se dit ravi du schéma fiscal : il suit ses chiffres en temps réel, les comprend et apprécie les situations intermédiaires.',
+  },
+  {
+    name: 'SEFA',
+    tag: 'ASBL',
+    title: 'Un dossier repris, une comptabilité analytique en place',
+    text: 'Reprise du dossier comptable et fiscal depuis un autre cabinet, mise en place d’Odoo (CODA, facturation des cotisations, timesheets), comptabilité analytique et contrôle de gestion.',
+    feedback: 'L’ASBL se dit satisfaite du suivi, de la comptabilité analytique et du contrôle de gestion.',
+  },
+];
+
+// TODO (Diego): client quotes. NOT displayed. A quote is published only with written client agreement
+// (e-mail is enough) and the exact first name, role and company. Texts below are drafts to SEND for validation,
+// they are not client quotes. Set approved to true and fill author once the client has answered in writing.
+const TESTIMONIALS = [
+  { approved: false, company: 'MAJA', author: '', quote: 'Le POC est finalisé : nous disposons d’un reporting consolidé de nos sociétés grâce à l’intégration MCP. Nous sommes très satisfaits du résultat.' },
+  { approved: false, company: 'LDK Consulting', author: '', quote: 'Je suis ravi du schéma fiscal élaboré pour ma société de management. Je vois mes chiffres en temps réel, je les comprends, et j’apprécie d’avoir des situations intermédiaires avec l’équipe.' },
+  { approved: false, company: 'SEFA', author: '', quote: 'Nous sommes très satisfaits du suivi, de la mise en place de notre comptabilité analytique et du contrôle de gestion.' },
+];
+const approvedQuotes = TESTIMONIALS.filter((t) => t.approved && t.author);
 
 const priced = offers.tiers.filter((t) => t.price.includes('€'));
 const onRequest = offers.tiers.find((t) => !t.price.includes('€'));
@@ -35,6 +78,7 @@ const faqItems = FAQ_ORDER.map((i) => faq.items[i]).filter(Boolean).map((item) =
   ...item,
   answer: SHOW_UNVERIFIED_CLAIMS ? item.answer : item.answer.replace('le comptable agréé', 'le comptable'),
 }));
+const roleLabel = (role: string) => (SHOW_UNVERIFIED_CLAIMS ? role : role.replace(' ITAA', ''));
 
 const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hide_event_type_details=1&hide_gdpr_banner=1';
 ---
@@ -61,23 +105,86 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
   <div class="container row">
     <h6>Cabinet comptable · Bruxelles</h6>
     <h1>Cabinet comptable à Bruxelles <span>pour sociétés sur Odoo</span></h1>
-    <p class="sea-hero-lead">{OFFER.subtitle} Notre fiduciaire est 100 % dédiée aux sociétés qui pilotent leur gestion sur Odoo.</p>
+    <p class="sea-hero-lead">{OFFER.subtitle}</p>
     <a class="btn btn-violet" href="#contact" data-sea-cta="hero">{OFFER.cta}</a>
     <p class="sea-reassurance">{reassurance}</p>
   </div>
 </section>
 <div class="brand-bar"></div>
 
-<section class="why-section sea-why">
+<section class="certified-experts-section">
   <div class="container">
-    <div class="why-title"><h2>Pourquoi choisir un comptable AgiFid à Bruxelles ?</h2></div>
-    <div class="sea-why-grid">
-      {methodology.items.map((item, i) => (
-        <div class="sea-why-card">
-          <h4>0{i + 1}</h4>
-          <h3>{item.title}</h3>
+    <h6>Partenaire Odoo Silver</h6>
+    <h2 class="sea-section-h">Votre équipe comptable à Bruxelles</h2>
+    <div class="experts-slider">
+      {experts.map((expert) => (
+        <div class="expert-member">
+          <img src={`/assets/img/experts/${expert.photo}`} alt={expert.displayName} width="700" height="700" loading="lazy">
+          <div class="expert-info"><h5>{expert.displayName}</h5><h6>{roleLabel(expert.role)}</h6></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="why-section" id="pourquoi">
+  <div class="container">
+    <div class="why-title"><h2 class="sea-section-h">Pourquoi choisir un comptable AgiFid à Bruxelles ?</h2></div>
+    <div class="row">
+      <div class="why-image">
+        <div class="why-img"><img src="/assets/img/why-choose-us-sec-img-scaled.jpg" alt="Un comptable AgiFid travaille dans Odoo" width="660" height="440" loading="lazy"></div>
+      </div>
+      <div class="why-content">
+        {methodology.items.map((item, i) => (
+          <div class="item">
+            <h4>{String(i + 1).padStart(2, '0')}</h4>
+            <h3>{item.title}</h3>
+            <ul>
+              {item.bullets.map((b) => <li>{b.text}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sea-cases">
+  <div class="container">
+    <div class="title">
+      <h2 class="sea-section-h">Ce que nous faisons pour nos clients</h2>
+    </div>
+    <div class="sea-cases-grid">
+      {CASES.map((c) => (
+        <article class="sea-case">
+          <span class="sea-case-tag">{c.name} · {c.tag}</span>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+          <p class="sea-case-feedback"><strong>Leur retour :</strong> {c.feedback}</p>
+        </article>
+      ))}
+    </div>
+    {approvedQuotes.length > 0 && (
+      <div class="sea-quotes">
+        {approvedQuotes.map((t) => (
+          <blockquote class="sea-quote"><p>« {t.quote} »</p><footer>{t.author}, {t.company}</footer></blockquote>
+        ))}
+      </div>
+    )}
+    <p class="sea-cta-row"><a class="btn btn-violet" href="#contact" data-sea-cta="cas-clients">{OFFER.cta}</a></p>
+  </div>
+</section>
+
+<section class="odoo-expertise-section">
+  <div class="container">
+    <h2 class="sea-section-h">Un accompagnement comptable à 360° à Bruxelles</h2>
+    <div class="odoo-expertise-content">
+      {services360.items.map((item) => (
+        <div class="item">
+          <div class="icon"><img src={`/assets/img/${item.icon}`} alt="" width="64" height="64" loading="lazy"></div>
+          <h3 class="sea-360-title">{item.title}</h3>
           <ul>
-            {item.bullets.map((b) => <li>{b.text}</li>)}
+            {item.bullets.slice(0, 1).map((b) => <li>{b.text}</li>)}
           </ul>
         </div>
       ))}
@@ -107,11 +214,28 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
   </div>
 </section>
 
-<!-- TODO (Diego): "Ils nous font confiance" section, NOT displayed.
-     No validated testimonial, case-study consent, client logo consent, "98 PME" source or "agréé ITAA"
-     confirmation yet. Nothing is published without written client agreement (first name, role, company).
-     Material and status: see the SEA brief, section "Témoignages et cas clients" (SEFA, MAJA, LDK Consulting,
-     clients d'Agitech in a separate "Clients d'Agitech" block). -->
+<section class="union-section">
+  <div class="container">
+    <h2 class="sea-section-h">AgiFid &amp; Agitech : le comptable et l’intégrateur Odoo, enfin réunis</h2>
+    <div class="union-diagram">
+      <div class="union-node">
+        <div class="tag">Comptable</div>
+        <div class="name"><img src="/assets/img/logo-agifid-dark.png" alt="AgiFid" width="944" height="314" loading="lazy"></div>
+        <div class="role">Comptabilité, fiscalité, conseil</div>
+      </div>
+      <div class="union-plus">+</div>
+      <div class="union-node">
+        <div class="tag">Intégrateur certifié</div>
+        <div class="name"><img src="/assets/img/agitech-logo-dark.svg" alt="Agitech" loading="lazy"></div>
+        <div class="role">Odoo, ERP, infrastructure IT</div>
+      </div>
+    </div>
+    <p class="union-note">Deux entités indépendantes qui collaborent : l’intégrateur gère Odoo, le comptable gère la compta, avec une coordination directe entre les deux équipes.</p>
+  </div>
+</section>
+
+<!-- TODO (Diego): client logos ("Ils nous font confiance") are NOT displayed: no logo consent, and the
+     "98 PME" figure has no confirmed source. See the SEA brief, section "Témoignages et cas clients". -->
 
 <section class="onboarding-section sea-onboarding">
   <div class="container">
