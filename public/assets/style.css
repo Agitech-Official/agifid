@@ -440,6 +440,35 @@
   .legal-page code { font-size: 0.9em; background: var(--offwhite); padding: 0.1em 0.35em; border-radius: 4px; }
   .legal-list { list-style: decimal; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
   .legal-list li { color: var(--muted); line-height: 1.7; padding-left: 0.4rem; }
+  /* SEA landing page (comptable-bruxelles) */
+  .sea-header { background: var(--black); border-bottom: 1px solid #fff; }
+  .sea-header-wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  .sea-header .logo img { height: 40px; width: auto; display: block; }
+  .sea-header-cta { color: #fff; font-family: var(--font-display); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.6px; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 100px; padding: 0.6rem 1.2rem; min-height: 44px; display: inline-flex; align-items: center; }
+  .sea-header-cta:hover { border-color: var(--violet-light); color: var(--violet-light); }
+  .sea-hero { padding: 4.5rem 0 5rem; }
+  .sea-hero h1 { max-width: 760px; margin-bottom: 1.25rem; }
+  .sea-hero-lead { color: var(--muted-onDark); max-width: 640px; line-height: 1.7; margin-bottom: 2rem; }
+  .sea-reassurance { margin-top: 1.25rem; color: var(--muted-onDark); font-size: 0.85rem; }
+  .sea-why { padding: 4.5rem 0; }
+  .sea-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .sea-why-card { padding: 1.75rem; border: 1px solid var(--border); border-radius: 14px; }
+  .sea-why-card h4 { color: var(--violet); font-size: 1rem; margin-bottom: 0.5rem; }
+  .sea-why-card h3 { font-size: 1.15rem; margin-bottom: 0.9rem; }
+  .sea-why-card li { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.6rem; }
+  .sea-offers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .sea-offer-card { padding: 2rem; border: 1px solid var(--border); border-radius: 16px; background: var(--white); }
+  .sea-offer-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .sea-offer-price { font-family: var(--font-display); font-size: 1.6rem; color: var(--violet); margin-bottom: 1.25rem; }
+  .sea-offer-card li { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.5rem; }
+  .sea-offers-note { text-align: center; margin-top: 1.5rem; color: var(--muted); }
+  .sea-cta-row { text-align: center; margin-top: 1.5rem; }
+  .sea-footer { background: var(--black); color: var(--muted-onDark); padding: 2rem 0; font-size: 0.85rem; text-align: center; }
+  .sea-footer p { margin-bottom: 0.5rem; }
+  .sea-footer a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+  .sea-footer-links span { margin: 0 0.5rem; opacity: 0.6; }
+  @media (max-width: 900px) { .sea-why-grid, .sea-offers-grid { grid-template-columns: 1fr; } .sea-hero { padding: 3rem 0 3.5rem; } .sea-why { padding: 3rem 0; } }
+  @media (max-width: 560px) { .sea-header .container, .sea-hero .container, .sea-why .container, .sea-offers .container, .sea-onboarding .container, .faq-section .container-sm, .sea-contact .container, .sea-footer .container { padding-left: 1rem; padding-right: 1rem; } }
   .about-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
   @media (max-width: 560px) {
     .about-section { padding: 3.5rem 0; }

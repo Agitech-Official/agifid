@@ -20,12 +20,14 @@ export interface Props {
   alternates?: Partial<Record<'fr' | 'en' | 'nl', string>>;
   /** Calendly widget + reCAPTCHA v3 + the postMessage listener - only needed on pages with the contact form. */
   includeContactScripts?: boolean;
+  /** Landing page (ads): the page renders its own minimal header/footer. */
+  landing?: boolean;
 }
 
 const {
   htmlLang, lang, pageType, title, description,
   canonical, ogLocale, jsonLd, robotsNoIndex = false,
-  altLangUrl, alternates, includeContactScripts = false,
+  altLangUrl, alternates, includeContactScripts = false, landing = false,
 } = Astro.props;
 
 const consent = {
@@ -65,9 +67,9 @@ const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 
         <link rel="alternate" hreflang={otherLang} href={altLangUrl}>
         <link rel="alternate" hreflang="x-default" href={lang === 'fr' ? canonical : altLangUrl}>
       </>
-    ) : (
+    ) : !robotsNoIndex ? (
       <link rel="alternate" hreflang={lang} href={canonical}>
-    )}
+    ) : null}
     <meta property="og:type" content="website">
     <meta property="og:locale" content={ogLocale}>
     <meta property="og:url" content={canonical}>
@@ -94,11 +96,11 @@ const otherLang = lang === 'fr' ? (altLangUrl?.includes('-nl') ? 'nl' : 'en') : 
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-<Header lang={lang} pageType={pageType} langUrls={alternates} />
+{!landing && <Header lang={lang} pageType={pageType} langUrls={alternates} />}
 
 <slot />
 
-<Footer lang={lang} pageType={pageType} />
+{!landing && <Footer lang={lang} pageType={pageType} />}
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label={consent.manage} hidden>
   <p>{consent.text} <a href={consent.privacy}>{consent.more}</a></p>

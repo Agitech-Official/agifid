@@ -1,0 +1,253 @@
+---
+// Landing page for Google Ads ("comptable Bruxelles"). NOT indexed: noindex + not in sitemap +
+// no internal link to it. Do not block it in robots.txt (AdsBot must be able to crawl it).
+// Content is reused from the Keystatic singletons used by the home page: nothing invented here.
+import Layout from '../layouts/Layout.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const methodology = await reader.singletons.methodology.read();
+const offers = await reader.singletons.offers.read();
+const onboarding = await reader.singletons.onboarding.read();
+const faq = await reader.singletons.faq.read();
+
+// TODO (Diego): confirm the offer. A concrete deliverable should replace the generic "rendez-vous",
+// e.g. a diagnostic of the Odoo accounting with 3 quantified time savings (NOT confirmed, do not publish as is).
+const OFFER = {
+  subtitle: "AgiFid est un cabinet comptable à Bruxelles : votre comptable travaille directement dans votre Odoo, avec des tarifs fixes et transparents.",
+  cta: 'Prendre rendez-vous',
+};
+
+// TODO (Diego): "Membre ITAA" and "98 PME" are not shown until verified (ITAA registration request sent
+// on 26/10/2026; "98 PME" source unconfirmed). Set to true once confirmed.
+const SHOW_UNVERIFIED_CLAIMS = false;
+const reassurance = SHOW_UNVERIFIED_CLAIMS
+  ? 'Membre ITAA · 98 PME · Partenaire Odoo Silver'
+  : 'Partenaire Odoo Silver · Tarifs fixes et transparents · 100 % sur Odoo';
+
+const priced = offers.tiers.filter((t) => t.price.includes('€'));
+const onRequest = offers.tiers.find((t) => !t.price.includes('€'));
+// FAQ: cost, how to choose, switching mid-year, do I need Odoo, AgiFid vs Agitech
+const FAQ_ORDER = [1, 2, 3, 10, 8];
+// "agréé" is not shown on this page until the ITAA registration is confirmed (see SHOW_UNVERIFIED_CLAIMS).
+const faqItems = FAQ_ORDER.map((i) => faq.items[i]).filter(Boolean).map((item) => ({
+  ...item,
+  answer: SHOW_UNVERIFIED_CLAIMS ? item.answer : item.answer.replace('le comptable agréé', 'le comptable'),
+}));
+
+const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hide_event_type_details=1&hide_gdpr_banner=1';
+---
+<Layout
+  htmlLang="fr-BE"
+  lang="fr"
+  pageType="sub"
+  title="Cabinet comptable à Bruxelles | AgiFid, 100 % sur Odoo"
+  description="Cabinet comptable ITAA à Bruxelles, 100 % sur Odoo : tarifs fixes dès 3 500 € HTVA/an. Prenez rendez-vous avec un comptable AgiFid."
+  canonical="https://www.agifid.be/comptable-bruxelles.html"
+  ogLocale="fr_BE"
+  robotsNoIndex
+  includeContactScripts
+  landing
+>
+<header class="sea-header">
+  <div class="container sea-header-wrap">
+    <span class="logo"><img src="/assets/img/logo-agifid.png" alt="AgiFid" width="944" height="314"></span>
+    <a class="sea-header-cta" href="#contact" data-sea-cta="header">{OFFER.cta}</a>
+  </div>
+</header>
+
+<section class="home-banner sea-hero">
+  <div class="container row">
+    <h6>Cabinet comptable · Bruxelles</h6>
+    <h1>Cabinet comptable à Bruxelles <span>pour sociétés sur Odoo</span></h1>
+    <p class="sea-hero-lead">{OFFER.subtitle} Notre fiduciaire est 100 % dédiée aux sociétés qui pilotent leur gestion sur Odoo.</p>
+    <a class="btn btn-violet" href="#contact" data-sea-cta="hero">{OFFER.cta}</a>
+    <p class="sea-reassurance">{reassurance}</p>
+  </div>
+</section>
+<div class="brand-bar"></div>
+
+<section class="why-section sea-why">
+  <div class="container">
+    <div class="why-title"><h2>Pourquoi choisir un comptable AgiFid à Bruxelles ?</h2></div>
+    <div class="sea-why-grid">
+      {methodology.items.map((item, i) => (
+        <div class="sea-why-card">
+          <h4>0{i + 1}</h4>
+          <h3>{item.title}</h3>
+          <ul>
+            {item.bullets.map((b) => <li>{b.text}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="our-services-section sea-offers" id="tarifs">
+  <div class="container">
+    <div class="title">
+      <h2>Tarifs fixes de notre cabinet comptable</h2>
+      <h6>Pas de mauvaise surprise : vous savez ce que vous payez, par an.</h6>
+    </div>
+    <div class="sea-offers-grid">
+      {priced.map((tier) => (
+        <div class="sea-offer-card">
+          <h3>{tier.name}</h3>
+          <p class="sea-offer-price">{tier.price}<span class="price-vat">HTVA</span></p>
+          <ul>
+            {tier.features.filter((f) => f.included).slice(0, 6).map((f) => <li>✓ {f.text}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    {onRequest && <p class="sea-offers-note">{onRequest.name} : {onRequest.price.toLowerCase()}.</p>}
+    <p class="sea-cta-row"><a class="btn btn-violet" href="#contact" data-sea-cta="tarifs">{OFFER.cta}</a></p>
+  </div>
+</section>
+
+<!-- TODO (Diego): "Ils nous font confiance" section, NOT displayed.
+     No validated testimonial, case-study consent, client logo consent, "98 PME" source or "agréé ITAA"
+     confirmation yet. Nothing is published without written client agreement (first name, role, company).
+     Material and status: see the SEA brief, section "Témoignages et cas clients" (SEFA, MAJA, LDK Consulting,
+     clients d'Agitech in a separate "Clients d'Agitech" block). -->
+
+<section class="onboarding-section sea-onboarding">
+  <div class="container">
+    <div class="title">
+      <h2>Comment démarrer avec notre cabinet comptable</h2>
+      <p>{onboarding.subtitle}</p>
+    </div>
+    <div class="onboarding-track">
+      {onboarding.steps.map((s, i) => (
+        <div class="onboarding-step">
+          <div class="num">0{i + 1}</div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="container-sm">
+    <div class="title">
+      <h2>Questions fréquentes sur le comptable à Bruxelles</h2>
+    </div>
+    <div class="faq-list">
+      {faqItems.map((item) => (
+        <details class="faq-item">
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="contact-hero sea-contact" id="contact">
+  <div class="container">
+    <div class="contact-hero-intro">
+      <h2>Parlons de votre comptabilité avec un comptable à Bruxelles</h2>
+      <p>Réservez un créneau de 25 minutes. Pas de blabla commercial : vous parlez directement avec un expert AgiFid.</p>
+    </div>
+  </div>
+  <div class="container contact-hero-row">
+    <div class="calendly-embed-wrap">
+      <div class="calendly-inline-widget" data-url={CALENDLY} style="min-width:320px;height:700px;"></div>
+      <noscript>
+        <p class="calendly-fallback"><a href="https://calendly.com/sam-agitech/25-min-visio-meeting-clone" target="_blank" rel="noopener">Réserver un créneau sur Calendly</a></p>
+      </noscript>
+    </div>
+
+    <div class="contact-card">
+      <h3>Ou laissez-nous vos coordonnées</h3>
+      <form class="contact-form" id="sea-form" action="https://formspree.io/f/moearzwo" method="POST">
+        <div class="form-field">
+          <label for="sea-name">Nom*</label>
+          <input type="text" id="sea-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="sea-email">Email*</label>
+          <input type="email" id="sea-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="sea-phone">Téléphone*</label>
+          <input type="tel" id="sea-phone" name="phone" autocomplete="tel" required>
+        </div>
+        <input type="hidden" name="_subject" value="Demande de rendez-vous (page comptable Bruxelles) - AgiFid">
+        <input type="hidden" name="_next" value="merci-formulaire.html">
+        <input type="hidden" name="source_page" value="comptable-bruxelles">
+        <input type="hidden" name="gclid" data-track="gclid">
+        <input type="hidden" name="utm_source" data-track="utm_source">
+        <input type="hidden" name="utm_medium" data-track="utm_medium">
+        <input type="hidden" name="utm_campaign" data-track="utm_campaign">
+        <input type="hidden" name="utm_term" data-track="utm_term">
+        <input type="hidden" name="utm_content" data-track="utm_content">
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-sea">
+        <button type="submit" class="btn btn-violet">Être rappelé →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="sea-footer">
+  <div class="container">
+    <!-- TODO (Diego): confirm the legal wording "AgiFid, marque de Mfinances" (legal entity: MFINANCES SRL). -->
+    <p><strong>AgiFid</strong>, marque de Mfinances · Bruxelles, Belgique · TVA BE 0827635870</p>
+    <p class="sea-footer-links">
+      <a href="/politique-de-confidentialite.html">Politique de confidentialité</a>
+      <span>|</span>
+      <a href="/conditions-generales.html">Conditions générales</a>
+      <span>|</span>
+      <a href="#" data-cookie-settings>Gérer les cookies</a>
+    </p>
+  </div>
+</footer>
+
+<script is:inline>
+  // Conversion events (pushed to the dataLayer; GTM only runs after cookie consent) and gclid/UTM carry-over.
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+    var KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    var params = {};
+    try {
+      var q = new URLSearchParams(location.search);
+      KEYS.forEach(function (k) { if (q.get(k)) params[k] = q.get(k); });
+      if (Object.keys(params).length) sessionStorage.setItem('sea-params', JSON.stringify(params));
+      else params = JSON.parse(sessionStorage.getItem('sea-params') || '{}');
+    } catch (e) {}
+
+    document.querySelectorAll('[data-track]').forEach(function (el) {
+      var k = el.getAttribute('data-track');
+      if (params[k]) el.value = params[k];
+    });
+
+    // Calendly understands utm_* only: gclid stays in the form (hidden field) and in sessionStorage.
+    var widget = document.querySelector('.calendly-inline-widget');
+    if (widget) {
+      var url = new URL(widget.getAttribute('data-url'));
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
+        if (params[k]) url.searchParams.set(k, params[k]);
+      });
+      widget.setAttribute('data-url', url.toString());
+    }
+
+    document.addEventListener('click', function (e) {
+      var cta = e.target.closest && e.target.closest('[data-sea-cta]');
+      if (cta) window.dataLayer.push({ event: 'sea_cta_click', cta_position: cta.getAttribute('data-sea-cta'), page: 'comptable-bruxelles' });
+    });
+    var form = document.getElementById('sea-form');
+    if (form) form.addEventListener('submit', function () {
+      window.dataLayer.push({ event: 'sea_form_submit', page: 'comptable-bruxelles' });
+    });
+    window.addEventListener('message', function (e) {
+      if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
+        window.dataLayer.push({ event: 'sea_calendly_scheduled', page: 'comptable-bruxelles' });
+      }
+    });
+  })();
+</script>
+</Layout>
