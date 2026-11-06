@@ -40,25 +40,28 @@ const CASES = [
   {
     name: 'MAJA',
     tag: 'Groupe de sociétés',
-    title: 'Plusieurs sociétés, un seul reporting consolidé',
-    text: 'Reprise des dossiers comptables et mise en place d’Odoo avec consolidation multi-sociétés. La preuve de concept est finalisée : un reporting consolidé de tout le groupe, directement connecté à Odoo.',
-    feedback: 'Le groupe se dit très satisfait du résultat.',
+    mission: 'Reprise des dossiers comptables et mise en place d’Odoo avec consolidation multi-sociétés. La preuve de concept est finalisée : un reporting consolidé de tout le groupe, directement connecté à Odoo.',
+    feedback: 'Très satisfait du résultat.',
+    author: 'Alexis LH.',
   },
   {
     name: 'LDK Consulting',
     tag: 'Société de management',
-    title: 'Un schéma fiscal sur mesure, des chiffres que l’on comprend',
-    text: 'Élaboration d’un schéma fiscal adapté à la situation du dirigeant, chiffres accessibles en continu dans Odoo et situations intermédiaires régulières avec l’équipe.',
-    feedback: 'Le dirigeant se dit ravi du schéma fiscal : il suit ses chiffres en temps réel, les comprend et apprécie les situations intermédiaires.',
+    mission: 'Élaboration d’un schéma fiscal adapté à la situation du dirigeant, chiffres accessibles en continu dans Odoo et situations intermédiaires régulières avec l’équipe.',
+    feedback: 'Ravi du schéma fiscal : il voit ses chiffres en temps réel, les comprend et apprécie les situations intermédiaires.',
+    author: 'Ladislas DK',
   },
   {
     name: 'SEFA',
     tag: 'ASBL',
-    title: 'Un dossier repris, une comptabilité analytique en place',
-    text: 'Reprise du dossier comptable et fiscal depuis un autre cabinet, mise en place d’Odoo (CODA, facturation des cotisations, timesheets), comptabilité analytique et contrôle de gestion.',
-    feedback: 'L’ASBL se dit satisfaite du suivi, de la comptabilité analytique et du contrôle de gestion.',
+    mission: 'Reprise du dossier comptable et fiscal depuis un autre cabinet, mise en place d’Odoo (CODA, facturation des cotisations, timesheets), comptabilité analytique et contrôle de gestion.',
+    feedback: 'Satisfaite du suivi, de la mise en place de la comptabilité analytique et du contrôle de gestion.',
+    author: 'Lina A.',
   },
 ];
+// TODO (Diego): the feedback lines are AgiFid's summary of what each client reported, written without quotation
+// marks. Once a client has validated the exact wording in writing, set quoted: true on that case (label becomes
+// "Retour cité" and the text goes between guillemets). Role/function of the signatories is not shown (unknown).
 
 // TODO (Diego): client quotes. NOT displayed. A quote is published only with written client agreement
 // (e-mail is enough) and the exact first name, role and company. Texts below are drafts to SEND for validation,
@@ -137,7 +140,7 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
         {methodology.items.map((item, i) => (
           <div class="item">
             <h4>{String(i + 1).padStart(2, '0')}</h4>
-            <h3>{item.title}</h3>
+            <h5>{item.title}</h5>
             <ul>
               {item.bullets.map((b) => <li>{b.text}</li>)}
             </ul>
@@ -157,9 +160,8 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
       {CASES.map((c) => (
         <article class="sea-case">
           <span class="sea-case-tag">{c.name} · {c.tag}</span>
-          <h3>{c.title}</h3>
-          <p>{c.text}</p>
-          <p class="sea-case-feedback"><strong>Leur retour :</strong> {c.feedback}</p>
+          <p class="sea-case-mission"><strong>Mission :</strong> {c.mission}</p>
+          <p class="sea-case-feedback"><strong>{c.quoted ? 'Retour cité' : 'Retour client'} :</strong> {c.quoted ? `« ${c.feedback} »` : c.feedback}<span class="sea-case-author"> — {c.author}, {c.name}</span></p>
         </article>
       ))}
     </div>
@@ -324,7 +326,7 @@ const CALENDLY = 'https://calendly.com/sam-agitech/25-min-visio-meeting-clone?hi
       {onboarding.steps.map((s, i) => (
         <div class="onboarding-step">
           <div class="num">0{i + 1}</div>
-          <h3>{s.title}</h3>
+          <h5>{s.title}</h5>
           <p>{s.text}</p>
         </div>
       ))}
